@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>С днём рождения, Сашулька ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
-
 <style>
+@import url('https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -22,20 +23,18 @@ body {
   color: white;
   font-family: 'Montserrat', sans-serif;
   background:
-    radial-gradient(circle at top left, #ffd1dc, transparent 35%),
-    radial-gradient(circle at bottom right, #b388ff, transparent 35%),
-    linear-gradient(135deg, #ff6f91, #ff9671, #ffc75f);
+    radial-gradient(circle at top left, #ffd6e8, transparent 35%),
+    radial-gradient(circle at bottom right, #b794ff, transparent 35%),
+    linear-gradient(135deg, #ff5f8f, #ff9671, #ffc75f);
 }
 
-/* Красивый фон */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,0.45) 1px, transparent 1px);
   background-size: 35px 35px;
-  opacity: 0.25;
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
 }
@@ -47,37 +46,36 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 22px;
+  padding: 80px 20px;
   text-align: center;
 }
 
-/* Первый экран */
+/* Главный экран */
 .hero {
   flex-direction: column;
 }
 
-.main-title {
-  font-family: 'Marck Script', cursive;
-  font-size: clamp(54px, 10vw, 120px);
-  line-height: 1.05;
+.hero-title {
+  font-family: 'Bubbleboddy Neue Trial', cursive;
+  font-size: clamp(58px, 10vw, 120px);
+  line-height: 1;
   margin: 0;
-  text-shadow: 0 8px 25px rgba(120, 0, 60, 0.35);
-  animation: titleAppear 1.4s ease forwards;
+  text-shadow: 0 12px 35px rgba(120, 0, 70, 0.35);
+  animation: popIn 1.3s ease forwards;
 }
 
-.subtitle {
-  margin-top: 22px;
-  font-size: clamp(22px, 4vw, 42px);
+.hero-subtitle {
+  margin-top: 30px;
+  font-size: clamp(24px, 4vw, 44px);
   font-weight: 800;
-  letter-spacing: 1px;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.25);
-  animation: fadeUp 1.7s ease forwards;
+  text-shadow: 0 7px 20px rgba(0,0,0,0.25);
+  animation: fadeUp 1.6s ease forwards;
 }
 
-.scroll-text {
+.scroll-down {
   margin-top: 70px;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
   animation: bounce 1.5s infinite;
 }
 
@@ -86,15 +84,15 @@ section {
   max-width: 900px;
   padding: 45px 35px;
   border-radius: 35px;
-  background: rgba(255, 255, 255, 0.23);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 25px 70px rgba(120, 0, 80, 0.25);
-  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.23);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 25px 70px rgba(110,0,70,0.25);
 }
 
 .card h2 {
-  font-family: 'Marck Script', cursive;
-  font-size: clamp(48px, 7vw, 80px);
+  font-family: 'Bubbleboddy Neue Trial', cursive;
+  font-size: clamp(48px, 7vw, 82px);
   margin: 0 0 25px;
 }
 
@@ -105,245 +103,377 @@ section {
 }
 
 /* История */
-.history-title {
-  font-family: 'Marck Script', cursive;
-  font-size: clamp(56px, 8vw, 95px);
+.story-wrap {
+  width: 100%;
+}
+
+.story-title {
+  font-family: 'Bubbleboddy Neue Trial', cursive;
+  font-size: clamp(56px, 8vw, 96px);
   margin-bottom: 40px;
-  text-shadow: 0 8px 25px rgba(120, 0, 60, 0.35);
+  text-shadow: 0 10px 30px rgba(120,0,70,0.35);
 }
 
 /* Книга */
-.book-scene {
-  perspective: 1800px;
+.book-area {
+  perspective: 2200px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .book-cover {
-  width: 280px;
-  height: 370px;
-  border-radius: 22px 12px 12px 22px;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,0.25), transparent 12%),
-    linear-gradient(135deg, #7b2d43, #c94f7c, #7b2d43);
-  box-shadow:
-    0 30px 70px rgba(60,0,30,0.45),
-    inset 0 0 0 6px rgba(255,220,170,0.45),
-    inset 0 0 0 12px rgba(255,255,255,0.08);
+  width: 310px;
+  height: 430px;
   position: relative;
+  border-radius: 24px 14px 14px 24px;
   cursor: pointer;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.35), transparent 14%),
+    radial-gradient(circle at center, rgba(255,255,255,0.18), transparent 40%),
+    linear-gradient(135deg, #6b1f3a, #d85b8a, #7b2d43);
+  box-shadow:
+    0 35px 90px rgba(60,0,40,0.48),
+    inset 0 0 0 7px rgba(255,230,170,0.48),
+    inset 0 0 0 15px rgba(255,255,255,0.08);
   transform-style: preserve-3d;
   transition: 0.9s ease;
 }
 
 .book-cover:hover {
-  transform: rotateY(-12deg) scale(1.04);
+  transform: rotateY(-14deg) scale(1.04);
 }
 
 .book-cover::before {
   content: "";
   position: absolute;
-  top: 26px;
-  left: 24px;
-  right: 24px;
-  bottom: 26px;
-  border: 2px solid rgba(255, 230, 170, 0.75);
-  border-radius: 18px;
+  top: 28px;
+  left: 25px;
+  right: 25px;
+  bottom: 28px;
+  border: 2px solid rgba(255,235,180,0.85);
+  border-radius: 20px;
 }
 
-.book-cover-title {
+.book-cover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 35px;
+  height: 100%;
+  width: 18px;
+  background: rgba(0,0,0,0.22);
+  border-radius: 20px;
+}
+
+.cover-text {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-family: 'Marck Script', cursive;
-  font-size: 52px;
-  color: #fff6d6;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  align-items: center;
+  font-family: 'Bubbleboddy Neue Trial', cursive;
+  font-size: 70px;
+  color: #fff3c4;
+  text-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  z-index: 2;
 }
 
 /* Замочек */
 .lock {
   position: absolute;
-  right: -28px;
-  top: 150px;
-  width: 62px;
-  height: 52px;
-  background: linear-gradient(135deg, #ffd36a, #b77818);
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  right: -35px;
+  top: 180px;
+  width: 72px;
+  height: 58px;
+  background: linear-gradient(135deg, #ffe082, #b7791f);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  z-index: 4;
 }
 
 .lock::before {
   content: "";
   position: absolute;
-  width: 38px;
-  height: 34px;
-  border: 8px solid #ffd36a;
+  width: 42px;
+  height: 38px;
+  border: 8px solid #ffe082;
   border-bottom: none;
-  border-radius: 30px 30px 0 0;
-  top: -30px;
-  left: 12px;
+  border-radius: 35px 35px 0 0;
+  top: -32px;
+  left: 15px;
 }
 
 .lock::after {
   content: "♥";
   position: absolute;
   color: #7b2d43;
-  font-size: 24px;
-  top: 11px;
-  left: 20px;
+  font-size: 28px;
+  top: 12px;
+  left: 23px;
 }
 
 /* Открытая книга */
-.open-book {
+.book {
   display: none;
-  width: min(92vw, 900px);
-  min-height: 520px;
+  width: min(94vw, 980px);
+  height: 620px;
   position: relative;
-  background: linear-gradient(90deg, #f6dfbd 49%, #d9b98f 50%, #fff1d2 51%);
-  border-radius: 24px;
-  box-shadow: 0 35px 85px rgba(60,0,40,0.45);
-  padding: 35px;
-  color: #6a3144;
-  animation: openBook 1s ease forwards;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 35px 70px rgba(60,0,40,0.45));
 }
 
-.open-book::before {
+.book-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  background:
+    linear-gradient(90deg, #f5dfbd 0%, #fff4d8 48%, #d4ad7d 50%, #fff4d8 52%, #f7dfbd 100%);
+  box-shadow:
+    inset 0 0 35px rgba(120,70,30,0.22),
+    0 30px 90px rgba(60,0,40,0.35);
+}
+
+.book-bg::before {
   content: "";
   position: absolute;
-  top: 25px;
-  bottom: 25px;
+  top: 28px;
+  bottom: 28px;
   left: 50%;
-  width: 4px;
-  background: rgba(80,40,20,0.25);
-  border-radius: 10px;
+  width: 6px;
+  transform: translateX(-50%);
+  background: rgba(105,60,35,0.28);
+  border-radius: 999px;
+  box-shadow: 0 0 25px rgba(70,40,20,0.35);
 }
 
+/* Страницы */
 .page {
-  display: none;
-  min-height: 450px;
-  animation: pageFlip 0.7s ease;
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  width: calc(50% - 45px);
+  height: calc(100% - 70px);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(.2,.8,.2,1);
+  z-index: 20;
 }
 
-.page.active {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 45px;
-  align-items: center;
+.page.flipped {
+  transform: rotateY(-180deg);
 }
 
-.page img {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
+.page-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
   border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(80,40,20,0.25);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 35%),
+    linear-gradient(135deg, #fff8e8, #f4d9ac);
+  color: #6b3345;
+  padding: 22px;
+  box-shadow:
+    inset 0 0 25px rgba(130,80,35,0.18),
+    0 12px 25px rgba(80,40,20,0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.page-back {
+  transform: rotateY(180deg);
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,0.8), transparent 35%),
+    linear-gradient(135deg, #f4d9ac, #fff8e8);
+}
+
+.page-face img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 16px;
   border: 8px solid white;
+  box-shadow: 0 14px 30px rgba(80,40,20,0.24);
 }
 
 .page-text {
-  font-family: 'Marck Script', cursive;
-  font-size: 42px;
-  line-height: 1.25;
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 800;
 }
 
-.book-buttons {
-  margin-top: 25px;
+.left-static {
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  width: calc(50% - 45px);
+  height: calc(100% - 70px);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 35%),
+    linear-gradient(135deg, #fff8e8, #f4d9ac);
+  color: #6b3345;
+  padding: 24px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 18px;
+  align-items: center;
+  box-shadow: inset 0 0 25px rgba(130,80,35,0.18);
 }
 
-.book-buttons button {
-  border: none;
-  padding: 14px 24px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff5fa2, #ff8fab);
-  color: white;
-  font-size: 17px;
+.left-static h3 {
+  font-family: 'Bubbleboddy Neue Trial', cursive;
+  font-size: 54px;
+  margin: 0 0 20px;
+}
+
+.left-static p {
+  font-size: 22px;
   font-weight: 700;
+  line-height: 1.5;
+}
+
+.controls {
+  margin-top: 35px;
+  display: none;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  border: none;
+  padding: 15px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4f9a, #ff91b8);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(120,0,70,0.25);
+  box-shadow: 0 12px 28px rgba(130,0,70,0.28);
+  transition: 0.25s;
 }
 
-.book-buttons button:hover {
-  transform: scale(1.05);
+.controls button:hover {
+  transform: scale(1.06);
 }
 
-/* Сердечки */
+.page-counter {
+  font-size: 20px;
+  font-weight: 800;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Сердечки и конфетти */
 .heart {
   position: fixed;
   bottom: -30px;
-  font-size: 22px;
+  font-size: 24px;
+  pointer-events: none;
   z-index: 1;
   animation: heartFloat linear infinite;
-  pointer-events: none;
 }
 
-/* Конфетти */
 .confetti {
   position: fixed;
   top: -20px;
   width: 10px;
-  height: 16px;
+  height: 18px;
+  pointer-events: none;
   z-index: 1;
   animation: confettiFall linear infinite;
-  pointer-events: none;
 }
 
-@keyframes titleAppear {
-  from { opacity: 0; transform: scale(0.7) translateY(40px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+/* Анимации */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.65) translateY(45px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(35px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(12px); }
+  50% { transform: translateY(13px); }
 }
 
 @keyframes heartFloat {
-  from { transform: translateY(0) rotate(0deg); opacity: 1; }
-  to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-115vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 @keyframes confettiFall {
-  from { transform: translateY(0) rotate(0deg); opacity: 1; }
-  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(115vh) rotate(720deg);
+    opacity: 0;
+  }
 }
 
-@keyframes openBook {
-  from { transform: rotateX(18deg) scale(0.75); opacity: 0; }
-  to { transform: rotateX(0) scale(1); opacity: 1; }
+@keyframes unlock {
+  0% { transform: rotate(0deg) scale(1); }
+  40% { transform: rotate(-12deg) scale(1.08); }
+  100% { transform: translateY(30px) rotate(20deg) scale(0); opacity: 0; }
 }
 
-@keyframes pageFlip {
-  from { opacity: 0; transform: rotateY(-25deg) scale(0.95); }
-  to { opacity: 1; transform: rotateY(0) scale(1); }
+.lock.opened {
+  animation: unlock 0.9s forwards;
 }
 
-@media (max-width: 700px) {
-  .page.active {
-    grid-template-columns: 1fr;
+@media (max-width: 760px) {
+  .book {
+    height: 540px;
   }
 
-  .open-book::before {
+  .left-static {
     display: none;
   }
 
-  .page img {
-    height: 300px;
+  .book-bg::before {
+    display: none;
   }
 
-  .page-text {
-    font-size: 34px;
+  .page {
+    left: 35px;
+    width: calc(100% - 70px);
+  }
+
+  .page-face img {
+    height: 340px;
+  }
+
+  .cover-text {
+    font-size: 58px;
   }
 }
 </style>
@@ -352,9 +482,9 @@ section {
 <body>
 
 <section class="hero">
-  <h1 class="main-title">С днём рождения,<br>Сашулька ❤️</h1>
-  <div class="subtitle">Этот сайт только для тебя</div>
-  <div class="scroll-text">Листай вниз ↓</div>
+  <h1 class="hero-title">С днём рождения,<br>Сашулька ❤️</h1>
+  <div class="hero-subtitle">Этот маленький мир сделан только для тебя</div>
+  <div class="scroll-down">Листай вниз ↓</div>
 </section>
 
 <section>
@@ -363,102 +493,145 @@ section {
     <p>
 ТУТ БУДЕТ ТВОЁ ПОЗДРАВЛЕНИЕ.
 
-Потом ты мне его скинешь, и я вставлю красиво.
+Потом ты мне его скинешь, и я вставлю его красиво.
     </p>
   </div>
 </section>
 
 <section>
-  <div>
-    <div class="history-title">Наша история</div>
+  <div class="story-wrap">
+    <div class="story-title">Наша история</div>
 
-    <div class="book-scene">
+    <div class="book-area">
       <div class="book-cover" id="bookCover" onclick="openBook()">
-        <div class="book-cover-title">Открыть</div>
+        <div class="cover-text">Открыть</div>
         <div class="lock" id="lock"></div>
       </div>
 
-      <div class="open-book" id="openBook">
-        <div class="page active">
-          <img src="photo_2026-05-01_11-58-20.jpg">
-          <div class="page-text">Самые любимые моменты начинаются здесь ❤️</div>
+      <div class="book" id="book">
+        <div class="book-bg"></div>
+
+        <div class="left-static">
+          <h3>Наша история</h3>
+          <p>Листай страницы и вспоминай наши моменты ❤️</p>
         </div>
 
-        <div class="page">
-          <img src="photo_2026-05-01_11-58-22.jpg">
-          <div class="page-text">Страница нашей истории 📖</div>
-        </div>
+        <div id="pagesContainer"></div>
+      </div>
 
-        <div class="page">
-          <img src="photo_2026-05-01_11-58-27.jpg">
-          <div class="page-text">И таких моментов будет ещё очень много ✨</div>
-        </div>
-
-        <!-- НОВЫЕ ФОТКИ ПОТОМ ДОБАВЛЯЙ СЮДА ТАК:
-        <div class="page">
-          <img src="НАЗВАНИЕ_ФОТО.jpg">
-          <div class="page-text">Текст к этой странице ❤️</div>
-        </div>
-        -->
-
-        <div class="book-buttons">
-          <button onclick="prevPage()">← Назад</button>
-          <button onclick="nextPage()">Вперёд →</button>
-        </div>
+      <div class="controls" id="controls">
+        <button onclick="prevPage()">← Назад</button>
+        <div class="page-counter" id="counter">1 / 18</div>
+        <button onclick="nextPage()">Вперёд →</button>
       </div>
     </div>
   </div>
 </section>
 
 <script>
+/* СТАРЫЕ ФОТКИ */
+const photos = [
+  "photo_2026-05-01_11-58-20.jpg",
+  "photo_2026-05-01_11-58-22.jpg",
+  "photo_2026-05-01_11-58-27.jpg",
+  "photo_2026-05-01_12-24-50.jpg",
+  "photo_2026-05-01_12-24-53.jpg",
+  "photo_2026-05-01_12-24-54.jpg",
+  "photo_2026-05-01_12-24-55.jpg",
+  "photo_2026-05-01_12-24-56.jpg",
+  "photo_2026-05-01_12-24-58.jpg",
+  "photo_2026-05-01_12-24-59.jpg",
+  "photo_2026-05-01_12-25-00.jpg",
+  "photo_2026-05-01_12-25-01.jpg",
+  "photo_2026-05-01_12-25-02.jpg",
+  "photo_2026-05-01_12-25-03.jpg",
+  "photo_2026-05-01_12-25-04.jpg",
+  "photo_2026-05-01_12-25-05.jpg",
+  "photo_2026-05-01_12-25-06.jpg",
+  "photo_2026-05-01_12-25-07.jpg"
+];
+
+let currentPage = 0;
+
 /* Сердечки */
-for (let i = 0; i < 35; i++) {
+for (let i = 0; i < 45; i++) {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 4 + Math.random() * 5 + "s";
-  heart.style.animationDelay = Math.random() * 4 + "s";
+  heart.style.animationDuration = 4 + Math.random() * 6 + "s";
+  heart.style.animationDelay = Math.random() * 5 + "s";
   document.body.appendChild(heart);
 }
 
 /* Конфетти */
-const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4d96ff", "#c77dff", "#ffffff"];
+const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4d96ff", "#c77dff", "#ffffff", "#ff9f1c"];
 
-for (let i = 0; i < 90; i++) {
+for (let i = 0; i < 120; i++) {
   const confetti = document.createElement("div");
   confetti.className = "confetti";
   confetti.style.left = Math.random() * 100 + "vw";
   confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-  confetti.style.animationDuration = 3 + Math.random() * 4 + "s";
-  confetti.style.animationDelay = Math.random() * 3 + "s";
+  confetti.style.animationDuration = 3 + Math.random() * 5 + "s";
+  confetti.style.animationDelay = Math.random() * 4 + "s";
+  confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
   document.body.appendChild(confetti);
 }
 
-/* Книга */
-let currentPage = 0;
+/* Создаём страницы книги */
+const pagesContainer = document.getElementById("pagesContainer");
+
+photos.forEach((photo, index) => {
+  const page = document.createElement("div");
+  page.className = "page";
+  page.style.zIndex = photos.length - index;
+
+  page.innerHTML = `
+    <div class="page-face">
+      <img src="${photo}" alt="Фото ${index + 1}">
+      <div class="page-text">Страница ${index + 1} нашей истории ❤️</div>
+    </div>
+    <div class="page-face page-back">
+      <img src="${photo}" alt="Фото ${index + 1}">
+      <div class="page-text">Наши воспоминания ✨</div>
+    </div>
+  `;
+
+  pagesContainer.appendChild(page);
+});
+
 const pages = document.querySelectorAll(".page");
 
 function openBook() {
-  document.getElementById("bookCover").style.display = "none";
-  document.getElementById("openBook").style.display = "block";
-}
+  document.getElementById("lock").classList.add("opened");
 
-function showPage(index) {
-  pages.forEach(page => page.classList.remove("active"));
-  pages[index].classList.add("active");
+  setTimeout(() => {
+    document.getElementById("bookCover").style.display = "none";
+    document.getElementById("book").style.display = "block";
+    document.getElementById("controls").style.display = "flex";
+    updateCounter();
+  }, 700);
 }
 
 function nextPage() {
-  currentPage++;
-  if (currentPage >= pages.length) currentPage = 0;
-  showPage(currentPage);
+  if (currentPage < pages.length) {
+    pages[currentPage].classList.add("flipped");
+    currentPage++;
+    updateCounter();
+  }
 }
 
 function prevPage() {
-  currentPage--;
-  if (currentPage < 0) currentPage = pages.length - 1;
-  showPage(currentPage);
+  if (currentPage > 0) {
+    currentPage--;
+    pages[currentPage].classList.remove("flipped");
+    updateCounter();
+  }
+}
+
+function updateCounter() {
+  document.getElementById("counter").innerText =
+    Math.min(currentPage + 1, photos.length) + " / " + photos.length;
 }
 </script>
 
