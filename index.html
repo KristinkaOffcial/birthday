@@ -2,261 +2,463 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Саше ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С днём рождения, Сашулька ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  color: white;
-  overflow-x: hidden;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255,0,100,0.75);
-  text-align: center;
-  padding: 15px;
-  font-size: 22px;
-  z-index: 10;
-}
-
-.section {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 80px 20px 30px;
+* {
   box-sizing: border-box;
 }
 
-#popup {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  background:
+    radial-gradient(circle at top left, #ffd1dc, transparent 35%),
+    radial-gradient(circle at bottom right, #b388ff, transparent 35%),
+    linear-gradient(135deg, #ff6f91, #ff9671, #ffc75f);
+}
+
+/* Красивый фон */
+body::before {
+  content: "";
   position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  color: #ff3f88;
-  padding: 28px;
-  border-radius: 22px;
-  font-size: 25px;
-  display: none;
-  box-shadow: 0 0 30px rgba(0,0,0,0.3);
-  z-index: 20;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px);
+  background-size: 35px 35px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.card {
-  background: rgba(255,255,255,0.18);
-  padding: 25px;
-  border-radius: 25px;
-  max-width: 760px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.book-cover {
-  width: 210px;
-  height: 280px;
-  background: #6b3e26;
-  border-radius: 18px;
+section {
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 22px;
+  padding: 80px 22px;
+  text-align: center;
+}
+
+/* Первый экран */
+.hero {
+  flex-direction: column;
+}
+
+.main-title {
+  font-family: 'Marck Script', cursive;
+  font-size: clamp(54px, 10vw, 120px);
+  line-height: 1.05;
+  margin: 0;
+  text-shadow: 0 8px 25px rgba(120, 0, 60, 0.35);
+  animation: titleAppear 1.4s ease forwards;
+}
+
+.subtitle {
+  margin-top: 22px;
+  font-size: clamp(22px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  animation: fadeUp 1.7s ease forwards;
+}
+
+.scroll-text {
+  margin-top: 70px;
+  font-size: 28px;
+  font-weight: 700;
+  animation: bounce 1.5s infinite;
+}
+
+/* Поздравление */
+.card {
+  max-width: 900px;
+  padding: 45px 35px;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.23);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 70px rgba(120, 0, 80, 0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.card h2 {
+  font-family: 'Marck Script', cursive;
+  font-size: clamp(48px, 7vw, 80px);
+  margin: 0 0 25px;
+}
+
+.card p {
+  font-size: 20px;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+/* История */
+.history-title {
+  font-family: 'Marck Script', cursive;
+  font-size: clamp(56px, 8vw, 95px);
+  margin-bottom: 40px;
+  text-shadow: 0 8px 25px rgba(120, 0, 60, 0.35);
+}
+
+/* Книга */
+.book-scene {
+  perspective: 1800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-cover {
+  width: 280px;
+  height: 370px;
+  border-radius: 22px 12px 12px 22px;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.25), transparent 12%),
+    linear-gradient(135deg, #7b2d43, #c94f7c, #7b2d43);
+  box-shadow:
+    0 30px 70px rgba(60,0,30,0.45),
+    inset 0 0 0 6px rgba(255,220,170,0.45),
+    inset 0 0 0 12px rgba(255,255,255,0.08);
+  position: relative;
   cursor: pointer;
-  box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
-  transition: 0.3s;
+  transform-style: preserve-3d;
+  transition: 0.9s ease;
 }
 
 .book-cover:hover {
-  transform: scale(1.06);
+  transform: rotateY(-12deg) scale(1.04);
 }
 
-.book {
-  display: none;
-  background: #fff8f0;
-  color: #5c2c2c;
-  width: 90%;
-  max-width: 420px;
-  min-height: 540px;
-  border-radius: 20px;
-  padding: 18px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-}
-
-.book img {
-  width: 100%;
-  max-height: 430px;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-.controls {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-button {
-  border: none;
-  padding: 12px 18px;
-  border-radius: 20px;
-  background: #ff5fa2;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #ff2f88;
-}
-
-.heart {
-  position: fixed;
-  bottom: -20px;
-  width: 18px;
-  height: 18px;
-  background: red;
-  transform: rotate(45deg);
-  animation: float 6s linear infinite;
-  z-index: 1;
-}
-
-.heart::before,
-.heart::after {
+.book-cover::before {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
-  background: red;
-  border-radius: 50%;
+  top: 26px;
+  left: 24px;
+  right: 24px;
+  bottom: 26px;
+  border: 2px solid rgba(255, 230, 170, 0.75);
+  border-radius: 18px;
 }
 
-.heart::before { top: -9px; left: 0; }
-.heart::after { left: -9px; top: 0; }
+.book-cover-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Marck Script', cursive;
+  font-size: 52px;
+  color: #fff6d6;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
 
-@keyframes float {
-  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
-  100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+/* Замочек */
+.lock {
+  position: absolute;
+  right: -28px;
+  top: 150px;
+  width: 62px;
+  height: 52px;
+  background: linear-gradient(135deg, #ffd36a, #b77818);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.lock::before {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 34px;
+  border: 8px solid #ffd36a;
+  border-bottom: none;
+  border-radius: 30px 30px 0 0;
+  top: -30px;
+  left: 12px;
+}
+
+.lock::after {
+  content: "♥";
+  position: absolute;
+  color: #7b2d43;
+  font-size: 24px;
+  top: 11px;
+  left: 20px;
+}
+
+/* Открытая книга */
+.open-book {
+  display: none;
+  width: min(92vw, 900px);
+  min-height: 520px;
+  position: relative;
+  background: linear-gradient(90deg, #f6dfbd 49%, #d9b98f 50%, #fff1d2 51%);
+  border-radius: 24px;
+  box-shadow: 0 35px 85px rgba(60,0,40,0.45);
+  padding: 35px;
+  color: #6a3144;
+  animation: openBook 1s ease forwards;
+}
+
+.open-book::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  bottom: 25px;
+  left: 50%;
+  width: 4px;
+  background: rgba(80,40,20,0.25);
+  border-radius: 10px;
+}
+
+.page {
+  display: none;
+  min-height: 450px;
+  animation: pageFlip 0.7s ease;
+}
+
+.page.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.page img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(80,40,20,0.25);
+  border: 8px solid white;
+}
+
+.page-text {
+  font-family: 'Marck Script', cursive;
+  font-size: 42px;
+  line-height: 1.25;
+}
+
+.book-buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.book-buttons button {
+  border: none;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5fa2, #ff8fab);
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(120,0,70,0.25);
+}
+
+.book-buttons button:hover {
+  transform: scale(1.05);
+}
+
+/* Сердечки */
+.heart {
+  position: fixed;
+  bottom: -30px;
+  font-size: 22px;
+  z-index: 1;
+  animation: heartFloat linear infinite;
+  pointer-events: none;
+}
+
+/* Конфетти */
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  z-index: 1;
+  animation: confettiFall linear infinite;
+  pointer-events: none;
+}
+
+@keyframes titleAppear {
+  from { opacity: 0; transform: scale(0.7) translateY(40px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+@keyframes heartFloat {
+  from { transform: translateY(0) rotate(0deg); opacity: 1; }
+  to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes confettiFall {
+  from { transform: translateY(0) rotate(0deg); opacity: 1; }
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes openBook {
+  from { transform: rotateX(18deg) scale(0.75); opacity: 0; }
+  to { transform: rotateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes pageFlip {
+  from { opacity: 0; transform: rotateY(-25deg) scale(0.95); }
+  to { opacity: 1; transform: rotateY(0) scale(1); }
+}
+
+@media (max-width: 700px) {
+  .page.active {
+    grid-template-columns: 1fr;
+  }
+
+  .open-book::before {
+    display: none;
+  }
+
+  .page img {
+    height: 300px;
+  }
+
+  .page-text {
+    font-size: 34px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>Для тебя, Сашулька ❤️</header>
+<section class="hero">
+  <h1 class="main-title">С днём рождения,<br>Сашулька ❤️</h1>
+  <div class="subtitle">Этот сайт только для тебя</div>
+  <div class="scroll-text">Листай вниз ↓</div>
+</section>
 
-<div id="popup">С днём рождения, Сашулька 🎉</div>
-
-<div class="section">
-  <h1>Сюрприз для тебя ❤️</h1>
-  <p>Листай вниз 👇</p>
-</div>
-
-<div class="section">
+<section>
   <div class="card">
     <h2>Моё поздравление 💌</h2>
     <p>
-      С днём рождения, Саша 💛
-Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни, и словами это всё передать очень сложно… Но я попробую.
-Мы с тобой уже 14 лет вместе. Четырнадцать. Это не просто цифра — это целая жизнь, прожитая бок о бок. Мы с тобой прошли всё: детский сад, школу, младшие классы, взросление, первые переживания, радости, слёзы, смех до боли в животе… Мы росли вместе, менялись вместе, и при этом каким-то чудом всегда оставались рядом.
-Ты для меня не просто подруга — ты человек, который знает меня настоящую. С моими странностями, настроениями, моментами, когда я могу быть невыносимой… И всё равно ты остаёшься рядом. И это бесценно.
-Я очень ценю тебя. Правда. Даже если иногда кажется, что я где-то не рядом, куда-то не поехала, что-то не так сделала или не послушала — знай, что ты всегда в моём сердце. И если ты напишешь, особенно если скажешь, что это важно — я всегда отвечу. Потому что ты для меня важна. Очень.
-Даже все твои кружки, дела, занятость — я стараюсь слушать, вникать, потому что для меня важно всё, что связано с тобой. Потому что для меня важна ты.
-Я хочу, чтобы мы виделись чаще. Хочу больше моментов с тобой, больше смеха, прогулок, разговоров ни о чём и обо всём одновременно. Надеюсь, этим летом мы проведём вместе кучу времени — так, как раньше, или даже лучше.
-Я до сих пор помню столько наших моментов… Как мы слушали Mimi Mamama и могли включать её по сто раз подряд. Как катались на качелях и придумывали какие-то свои миры. Как гуляли допоздна, обсуждали всё подряд, смеялись так, что невозможно было остановиться. Как поддерживали друг друга в сложные моменты, даже когда сами не до конца понимали, что происходит.
-Помню, как мы могли просто сидеть рядом — и этого уже было достаточно. Потому что с тобой всегда спокойно, тепло и по-настоящему.
-И я уверена, что это только начало. Нам ещё столько всего предстоит: новые воспоминания, поездки, разговоры, глупости, мечты… Я хочу пройти всё это с тобой так же, как мы прошли эти 14 лет — рука об руку.
-Саша, я тебя очень сильно люблю. Ценю. Уважаю. Горжусь тем, что ты есть в моей жизни.
-Пусть у тебя всё получается. Пусть ты будешь счастлива. Пусть рядом будут люди, которые тебя ценят так же, как ты того заслуживаешь. И пусть я всегда остаюсь среди этих людей.
-С днём рождения тебя, моя родная ❤️
-      <br><br>
-      Можешь просто заменить этот текст на свой.
+ТУТ БУДЕТ ТВОЁ ПОЗДРАВЛЕНИЕ.
+
+Потом ты мне его скинешь, и я вставлю красиво.
     </p>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <h2>Наша маленькая книжечка 📖</h2>
-  <div class="book-cover" onclick="openBook()">Открыть 📖</div>
+<section>
+  <div>
+    <div class="history-title">Наша история</div>
 
-  <div class="book" id="book">
-    <h3 id="pageNumber">Фото 1 из 18</h3>
-    <img id="photo" src="photo_2026-05-01_11-58-20.jpg" alt="Фото">
-    
-    <div class="controls">
-      <button onclick="prevPhoto()">⬅ Назад</button>
-      <button onclick="nextPhoto()">Вперёд ➡</button>
+    <div class="book-scene">
+      <div class="book-cover" id="bookCover" onclick="openBook()">
+        <div class="book-cover-title">Открыть</div>
+        <div class="lock" id="lock"></div>
+      </div>
+
+      <div class="open-book" id="openBook">
+        <div class="page active">
+          <img src="photo_2026-05-01_11-58-20.jpg">
+          <div class="page-text">Самые любимые моменты начинаются здесь ❤️</div>
+        </div>
+
+        <div class="page">
+          <img src="photo_2026-05-01_11-58-22.jpg">
+          <div class="page-text">Страница нашей истории 📖</div>
+        </div>
+
+        <div class="page">
+          <img src="photo_2026-05-01_11-58-27.jpg">
+          <div class="page-text">И таких моментов будет ещё очень много ✨</div>
+        </div>
+
+        <!-- НОВЫЕ ФОТКИ ПОТОМ ДОБАВЛЯЙ СЮДА ТАК:
+        <div class="page">
+          <img src="НАЗВАНИЕ_ФОТО.jpg">
+          <div class="page-text">Текст к этой странице ❤️</div>
+        </div>
+        -->
+
+        <div class="book-buttons">
+          <button onclick="prevPage()">← Назад</button>
+          <button onclick="nextPage()">Вперёд →</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <script>
-setTimeout(() => {
-  document.getElementById("popup").style.display = "block";
-}, 1000);
-
-setTimeout(() => {
-  document.getElementById("popup").style.display = "none";
-}, 4500);
-
-for (let i = 0; i < 25; i++) {
-  let heart = document.createElement("div");
+/* Сердечки */
+for (let i = 0; i < 35; i++) {
+  const heart = document.createElement("div");
   heart.className = "heart";
-  heart.style.left = Math.random() * 100 + "%";
-  heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 4 + Math.random() * 5 + "s";
+  heart.style.animationDelay = Math.random() * 4 + "s";
   document.body.appendChild(heart);
 }
 
-const photos = [
-  "photo_2026-05-01_11-58-20.jpg",
-  "photo_2026-05-01_11-58-22.jpg",
-  "photo_2026-05-01_11-58-27.jpg",
-  "photo_2026-05-01_12-24-50.jpg",
-  "photo_2026-05-01_12-24-53.jpg",
-  "photo_2026-05-01_12-24-54.jpg",
-  "photo_2026-05-01_12-24-55.jpg",
-  "photo_2026-05-01_12-24-56.jpg",
-  "photo_2026-05-01_12-24-58.jpg",
-  "photo_2026-05-01_12-24-59.jpg",
-  "photo_2026-05-01_12-25-00.jpg",
-  "photo_2026-05-01_12-25-01.jpg",
-  "photo_2026-05-01_12-25-02.jpg",
-  "photo_2026-05-01_12-25-03.jpg",
-  "photo_2026-05-01_12-25-04.jpg",
-  "photo_2026-05-01_12-25-05.jpg",
-  "photo_2026-05-01_12-25-06.jpg",
-  "photo_2026-05-01_12-25-07.jpg"
-];
+/* Конфетти */
+const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4d96ff", "#c77dff", "#ffffff"];
 
-let current = 0;
+for (let i = 0; i < 90; i++) {
+  const confetti = document.createElement("div");
+  confetti.className = "confetti";
+  confetti.style.left = Math.random() * 100 + "vw";
+  confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+  confetti.style.animationDuration = 3 + Math.random() * 4 + "s";
+  confetti.style.animationDelay = Math.random() * 3 + "s";
+  document.body.appendChild(confetti);
+}
+
+/* Книга */
+let currentPage = 0;
+const pages = document.querySelectorAll(".page");
 
 function openBook() {
-  document.querySelector(".book-cover").style.display = "none";
-  document.getElementById("book").style.display = "block";
+  document.getElementById("bookCover").style.display = "none";
+  document.getElementById("openBook").style.display = "block";
 }
 
-function showPhoto() {
-  document.getElementById("photo").src = photos[current];
-  document.getElementById("pageNumber").innerText =
-    "Фото " + (current + 1) + " из " + photos.length;
+function showPage(index) {
+  pages.forEach(page => page.classList.remove("active"));
+  pages[index].classList.add("active");
 }
 
-function nextPhoto() {
-  current++;
-  if (current >= photos.length) current = 0;
-  showPhoto();
+function nextPage() {
+  currentPage++;
+  if (currentPage >= pages.length) currentPage = 0;
+  showPage(currentPage);
 }
 
-function prevPhoto() {
-  current--;
-  if (current < 0) current = photos.length - 1;
-  showPhoto();
+function prevPage() {
+  currentPage--;
+  if (currentPage < 0) currentPage = pages.length - 1;
+  showPage(currentPage);
 }
 </script>
 
