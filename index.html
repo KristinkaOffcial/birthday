@@ -3,334 +3,420 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BOOK_VERSION_2</title>
+<title>С днём рождения, Сашулька ❤️</title>
 
 <style>
 @import url('https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial');
 
-*{box-sizing:border-box}
+* {
+  box-sizing: border-box;
+}
 
-body{
-  margin:0;
-  overflow-x:hidden;
-  font-family:'Bubbleboddy Neue Trial', sans-serif;
-  color:white;
-  text-align:center;
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Bubbleboddy Neue Trial', sans-serif;
+  color: white;
+  text-align: center;
   background:
-    radial-gradient(circle at top left,#ffd1e8,transparent 35%),
-    radial-gradient(circle at bottom right,#b388ff,transparent 35%),
-    linear-gradient(135deg,#ff5f8f,#ff9671,#ffc75f);
+    radial-gradient(circle at top left, #ffd1e8, transparent 35%),
+    radial-gradient(circle at bottom right, #b58cff, transparent 35%),
+    linear-gradient(135deg, #ff5f8f, #ff9671, #ffc75f);
 }
 
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.title{
-  font-size:clamp(54px,10vw,115px);
-  line-height:1;
-  text-shadow:0 12px 35px rgba(90,0,60,.35);
+.title {
+  font-size: clamp(54px, 10vw, 120px);
+  line-height: 1;
+  text-shadow: 0 14px 35px rgba(100, 0, 60, 0.35);
 }
 
-.scroll{
-  margin-top:40px;
-  font-size:30px;
-  animation:bounce 1.4s infinite;
+.scroll {
+  margin-top: 45px;
+  font-size: 30px;
+  animation: bounce 1.5s infinite;
 }
 
-@keyframes bounce{
-  50%{transform:translateY(12px)}
+@keyframes bounce {
+  50% {
+    transform: translateY(12px);
+  }
 }
 
-.heart,.confetti{
-  position:fixed;
-  pointer-events:none;
-  z-index:1;
+.story {
+  min-height: 100vh;
+  padding: 70px 15px;
 }
 
-.heart{
-  bottom:-30px;
-  font-size:24px;
-  animation:heartFloat linear infinite;
+.story h2 {
+  font-size: clamp(52px, 8vw, 95px);
+  margin-bottom: 45px;
+  text-shadow: 0 10px 28px rgba(100, 0, 60, 0.3);
 }
 
-@keyframes heartFloat{
-  to{transform:translateY(-120vh) rotate(360deg);opacity:0}
+/* сердечки и конфетти */
+.heart, .confetti {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.confetti{
-  top:-20px;
-  width:10px;
-  height:16px;
-  animation:confettiFall linear infinite;
+.heart {
+  bottom: -30px;
+  font-size: 22px;
+  animation: heartFloat linear infinite;
 }
 
-@keyframes confettiFall{
-  to{transform:translateY(120vh) rotate(720deg);opacity:0}
+@keyframes heartFloat {
+  to {
+    transform: translateY(-115vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-.story{
-  min-height:100vh;
-  padding:70px 15px;
+.confetti {
+  top: -20px;
+  width: 9px;
+  height: 14px;
+  animation: confettiFall linear forwards;
 }
 
-.story h2{
-  font-size:clamp(48px,8vw,90px);
-  margin-bottom:40px;
-  text-shadow:0 10px 30px rgba(90,0,60,.3);
+@keyframes confettiFall {
+  to {
+    transform: translateY(115vh) rotate(500deg);
+    opacity: 0;
+  }
 }
 
 /* ОБЛОЖКА */
-.cover{
-  width:320px;
-  height:430px;
-  margin:0 auto;
-  position:relative;
-  cursor:pointer;
-  border-radius:24px 14px 14px 24px;
+.cover {
+  width: 330px;
+  height: 445px;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+  border-radius: 26px 16px 16px 26px;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.38),transparent 16%),
-    radial-gradient(circle at center,rgba(255,255,255,.18),transparent 42%),
-    linear-gradient(135deg,#5d1632,#d85b8a,#7b2d43);
+    linear-gradient(90deg, rgba(30, 0, 20, 0.45), transparent 18%),
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.16), transparent 38%),
+    linear-gradient(135deg, #4d1230, #b93d74 45%, #6a1f46);
   box-shadow:
-    0 35px 90px rgba(60,0,40,.48),
-    inset 0 0 0 7px rgba(255,230,170,.45),
-    inset 0 0 0 16px rgba(255,255,255,.08);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  transition:.6s;
+    0 35px 85px rgba(55, 0, 35, 0.5),
+    inset 0 0 0 7px rgba(255, 225, 170, 0.5),
+    inset 0 0 0 17px rgba(255,255,255,0.07);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.7s ease;
 }
 
-.cover:hover{
-  transform:rotateY(-12deg) scale(1.03);
+.cover:hover {
+  transform: rotateY(-10deg) scale(1.025);
 }
 
-.cover::before{
-  content:"";
-  position:absolute;
-  inset:28px;
-  border:2px solid rgba(255,235,180,.85);
-  border-radius:20px;
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 30px;
+  border: 2px solid rgba(255, 235, 180, 0.85);
+  border-radius: 20px;
 }
 
-.cover-text{
-  font-size:64px;
-  color:#fff3c4;
-  text-shadow:0 7px 18px rgba(0,0,0,.4);
+.cover::after {
+  content: "";
+  position: absolute;
+  left: 42px;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: rgba(30, 0, 20, 0.28);
+  border-radius: 20px;
+  box-shadow: 10px 0 20px rgba(255,255,255,0.06);
 }
 
-/* ЗАМОК */
-.lock{
-  position:absolute;
-  right:-34px;
-  top:175px;
-  width:72px;
-  height:58px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#ffe08a,#b7791f);
-  box-shadow:0 12px 28px rgba(0,0,0,.38);
+.cover-corner {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 2px solid rgba(255, 235, 180, 0.7);
+  z-index: 2;
 }
 
-.lock::before{
-  content:"";
-  position:absolute;
-  left:15px;
-  top:-33px;
-  width:42px;
-  height:36px;
-  border:8px solid #ffe08a;
-  border-bottom:none;
-  border-radius:35px 35px 0 0;
+.cover-corner.tl {
+  top: 42px;
+  left: 42px;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 18px 0 0 0;
 }
 
-.lock::after{
-  content:"♥";
-  position:absolute;
-  color:#7b2d43;
-  font-size:28px;
-  left:23px;
-  top:12px;
+.cover-corner.br {
+  bottom: 42px;
+  right: 42px;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 18px 0;
 }
 
-.lock.open{
-  animation:unlock .8s forwards;
+.cover-text {
+  position: relative;
+  z-index: 3;
+  font-size: 68px;
+  color: #fff2c5;
+  text-shadow: 0 7px 18px rgba(0,0,0,0.45);
 }
 
-@keyframes unlock{
-  0%{transform:scale(1)}
-  45%{transform:scale(1.08) rotate(-12deg)}
-  100%{transform:translateY(35px) rotate(25deg) scale(0);opacity:0}
+/* красивый замочек */
+.lock {
+  position: absolute;
+  right: -36px;
+  top: 182px;
+  width: 76px;
+  height: 60px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 35% 25%, #fff4b8, transparent 25%),
+    linear-gradient(135deg, #ffe28a, #b7791f 70%);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.38),
+    inset 0 0 10px rgba(255,255,255,0.25);
+  z-index: 5;
+}
+
+.lock::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: -36px;
+  width: 44px;
+  height: 40px;
+  border: 8px solid #ffe28a;
+  border-bottom: none;
+  border-radius: 38px 38px 0 0;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.12);
+}
+
+.lock::after {
+  content: "♥";
+  position: absolute;
+  left: 24px;
+  top: 12px;
+  font-size: 29px;
+  color: #7b2d43;
+}
+
+.lock.open {
+  animation: unlock 0.75s forwards;
+}
+
+@keyframes unlock {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.08) rotate(-10deg); }
+  100% { transform: translateY(35px) rotate(22deg) scale(0); opacity: 0; }
 }
 
 /* КНИГА */
-.book-wrap{
-  display:none;
+.book-wrap {
+  display: none;
 }
 
-.book{
-  width:min(94vw,930px);
-  height:560px;
-  margin:0 auto;
-  position:relative;
-  perspective:2200px;
-  filter:drop-shadow(0 35px 70px rgba(60,0,40,.45));
+.book {
+  width: min(94vw, 940px);
+  height: 560px;
+  margin: 0 auto;
+  position: relative;
+  perspective: 2200px;
+  filter: drop-shadow(0 35px 70px rgba(60,0,40,0.42));
 }
 
-.book-bg{
-  position:absolute;
-  inset:0;
-  border-radius:26px;
+.book-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
   background:
-    linear-gradient(90deg,#d2a56e 0%,#f7dfb7 3%,#fff4d8 48%,#c79b62 50%,#fff4d8 52%,#f7dfb7 97%,#d2a56e 100%);
+    linear-gradient(90deg,
+      #b9834f 0%,
+      #e3bd84 3%,
+      #fff2d2 47%,
+      #b98956 50%,
+      #fff2d2 53%,
+      #e3bd84 97%,
+      #b9834f 100%);
   box-shadow:
-    inset 0 0 35px rgba(120,70,30,.25),
-    0 30px 80px rgba(0,0,0,.35);
+    inset 0 0 35px rgba(90,45,20,0.28),
+    0 30px 75px rgba(0,0,0,0.35);
 }
 
-.book-bg::before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:25px;
-  bottom:25px;
-  width:7px;
-  transform:translateX(-50%);
-  background:rgba(90,55,30,.38);
-  border-radius:999px;
-  box-shadow:0 0 25px rgba(70,40,20,.3);
+.book-bg::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  bottom: 24px;
+  width: 8px;
+  transform: translateX(-50%);
+  background: rgba(95,55,30,0.4);
+  border-radius: 999px;
+  box-shadow: 0 0 25px rgba(70,40,20,0.35);
 }
 
-.photo-page{
-  position:absolute;
-  top:32px;
-  width:calc(50% - 42px);
-  height:calc(100% - 64px);
-  border-radius:18px;
-  background:#fff4d8;
-  padding:14px;
+.book-bg::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(120,75,35,0.2);
+}
+
+/* страницы */
+.photo-page {
+  position: absolute;
+  top: 34px;
+  width: calc(50% - 44px);
+  height: calc(100% - 68px);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, #fff9e9, #f0d3a3);
+  padding: 16px;
+  overflow: hidden;
   box-shadow:
-    inset 0 0 20px rgba(120,70,30,.18),
-    0 10px 24px rgba(80,40,20,.18);
-  overflow:hidden;
+    inset 0 0 22px rgba(120,70,30,0.18),
+    0 12px 24px rgba(80,40,20,0.16);
 }
 
-.left-page{
-  left:32px;
+.left-page {
+  left: 34px;
 }
 
-.right-page{
-  right:32px;
+.right-page {
+  right: 34px;
 }
 
-.photo-page img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:13px;
-  display:block;
+.photo-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  display: block;
 }
 
-/* АНИМИРУЮЩИЙСЯ ЛИСТ */
-.flip-page{
-  position:absolute;
-  top:32px;
-  left:50%;
-  width:calc(50% - 42px);
-  height:calc(100% - 64px);
-  transform-origin:left center;
-  transform-style:preserve-3d;
-  z-index:10;
-  display:none;
-  transition:transform .95s cubic-bezier(.2,.75,.2,1);
+/* лист, который переворачивается */
+.flip-page {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  width: calc(50% - 44px);
+  height: calc(100% - 68px);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  z-index: 20;
+  display: none;
+  will-change: transform;
+  transition: transform 0.85s cubic-bezier(.22,.75,.25,1);
 }
 
-.flip-page.active{
-  display:block;
+.flip-page.active {
+  display: block;
 }
 
-.flip-page.turn{
-  transform:rotateY(-180deg);
+.flip-page.turn {
+  transform: rotateY(-180deg);
 }
 
-.face{
-  position:absolute;
-  inset:0;
-  backface-visibility:hidden;
-  border-radius:18px;
-  background:#fff4d8;
-  padding:14px;
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff9e9, #f0d3a3);
+  padding: 16px;
+  overflow: hidden;
   box-shadow:
-    inset 0 0 20px rgba(120,70,30,.18),
-    0 14px 30px rgba(80,40,20,.25);
+    inset 0 0 22px rgba(120,70,30,0.18),
+    0 16px 32px rgba(80,40,20,0.22);
 }
 
-.face.back{
-  transform:rotateY(180deg);
+.face.back {
+  transform: rotateY(180deg);
 }
 
-.face img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:13px;
+.face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
 }
 
-.controls{
-  margin-top:28px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+/* кнопки */
+.controls {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
-button{
-  border:none;
-  border-radius:999px;
-  padding:14px 24px;
-  background:linear-gradient(135deg,#ff4f9a,#ff8fab);
-  color:white;
-  font-size:18px;
-  cursor:pointer;
-  font-family:inherit;
-  box-shadow:0 12px 28px rgba(130,0,70,.28);
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 25px;
+  background: linear-gradient(135deg, #ff4f9a, #ff8fab);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 12px 28px rgba(130,0,70,0.25);
 }
 
-.counter{
-  font-size:22px;
-  text-shadow:0 6px 18px rgba(0,0,0,.25);
+button:hover {
+  transform: scale(1.04);
 }
 
-@media(max-width:760px){
-  .book{
-    height:520px;
+.counter {
+  font-size: 22px;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* телефон */
+@media(max-width:760px) {
+  .book {
+    height: 520px;
   }
 
-  .book-bg::before{
-    display:none;
+  .book-bg::before {
+    display: none;
   }
 
-  .photo-page{
-    width:calc(100% - 64px);
+  .left-page {
+    display: none;
   }
 
-  .left-page{
-    display:none;
+  .right-page {
+    left: 34px;
+    right: auto;
+    width: calc(100% - 68px);
   }
 
-  .right-page{
-    left:32px;
-    right:auto;
+  .flip-page {
+    left: 34px;
+    width: calc(100% - 68px);
   }
 
-  .flip-page{
-    left:32px;
-    width:calc(100% - 64px);
+  .cover {
+    width: 300px;
+    height: 405px;
+  }
+
+  .cover-text {
+    font-size: 60px;
   }
 }
 </style>
@@ -347,6 +433,8 @@ button{
   <h2>Наша история</h2>
 
   <div class="cover" id="cover" onclick="openBook()">
+    <div class="cover-corner tl"></div>
+    <div class="cover-corner br"></div>
     <div class="cover-text">Открыть</div>
     <div class="lock" id="lock"></div>
   </div>
@@ -404,25 +492,23 @@ const photos = [
 ];
 
 let spread = 0;
-let isTurning = false;
+let turning = false;
 const totalSpreads = Math.ceil(photos.length / 2);
 
-function photoAt(i){
+function photoAt(i) {
   return photos[i] || photos[photos.length - 1];
 }
 
-function renderSpread(){
-  const leftIndex = spread * 2;
-  const rightIndex = spread * 2 + 1;
+function renderSpread() {
+  let leftIndex = spread * 2;
+  let rightIndex = spread * 2 + 1;
 
   document.getElementById("leftPhoto").src = photoAt(leftIndex);
   document.getElementById("rightPhoto").src = photoAt(rightIndex);
-
-  document.getElementById("counter").innerText =
-    (spread + 1) + " / " + totalSpreads;
+  document.getElementById("counter").innerText = (spread + 1) + " / " + totalSpreads;
 }
 
-function openBook(){
+function openBook() {
   document.getElementById("lock").classList.add("open");
 
   setTimeout(() => {
@@ -432,9 +518,9 @@ function openBook(){
   }, 650);
 }
 
-function nextSpread(){
-  if(isTurning || spread >= totalSpreads - 1) return;
-  isTurning = true;
+function nextSpread() {
+  if (turning || spread >= totalSpreads - 1) return;
+  turning = true;
 
   const flip = document.getElementById("flipPage");
 
@@ -445,19 +531,19 @@ function nextSpread(){
 
   setTimeout(() => {
     flip.classList.add("turn");
-  }, 30);
+  }, 20);
 
   setTimeout(() => {
     spread++;
     renderSpread();
     flip.classList.remove("active", "turn");
-    isTurning = false;
-  }, 980);
+    turning = false;
+  }, 900);
 }
 
-function prevSpread(){
-  if(isTurning || spread <= 0) return;
-  isTurning = true;
+function prevSpread() {
+  if (turning || spread <= 0) return;
+  turning = true;
 
   const flip = document.getElementById("flipPage");
 
@@ -471,36 +557,41 @@ function prevSpread(){
 
   setTimeout(() => {
     flip.classList.remove("turn");
-  }, 30);
+  }, 20);
 
   setTimeout(() => {
     flip.classList.remove("active");
-    isTurning = false;
-  }, 980);
+    turning = false;
+  }, 900);
 }
 
-/* сердечки */
-for(let i=0;i<38;i++){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(4+Math.random()*5)+"s";
-  h.style.animationDelay=Math.random()*4+"s";
+/* меньше сердечек, чтобы не лагало */
+for(let i = 0; i < 22; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = (5 + Math.random() * 5) + "s";
+  h.style.animationDelay = Math.random() * 4 + "s";
   document.body.appendChild(h);
 }
 
-/* конфетти */
-const colors=["#ff4d6d","#ffd166","#06d6a0","#4d96ff","#c77dff","#fff"];
-for(let i=0;i<95;i++){
-  const c=document.createElement("div");
-  c.className="confetti";
-  c.style.left=Math.random()*100+"vw";
-  c.style.background=colors[Math.floor(Math.random()*colors.length)];
-  c.style.animationDuration=(3+Math.random()*4)+"s";
-  c.style.animationDelay=Math.random()*3+"s";
-  c.style.borderRadius=Math.random()>.5 ? "50%" : "3px";
+/* конфетти только один раз, чтобы не грузило */
+const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4d96ff", "#c77dff", "#fff"];
+
+for(let i = 0; i < 55; i++) {
+  const c = document.createElement("div");
+  c.className = "confetti";
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.background = colors[Math.floor(Math.random() * colors.length)];
+  c.style.animationDuration = (3 + Math.random() * 3) + "s";
+  c.style.animationDelay = Math.random() * 2 + "s";
+  c.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
   document.body.appendChild(c);
+
+  setTimeout(() => {
+    c.remove();
+  }, 7000);
 }
 </script>
 
