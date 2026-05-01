@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Саше ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  overflow-x: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,0,100,0.75);
+  text-align: center;
+  padding: 15px;
+  font-size: 22px;
+  z-index: 10;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 80px 20px 30px;
+  box-sizing: border-box;
+}
+
+#popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: #ff3f88;
+  padding: 28px;
+  border-radius: 22px;
+  font-size: 25px;
+  display: none;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  z-index: 20;
+}
+
+.card {
+  background: rgba(255,255,255,0.18);
+  padding: 25px;
+  border-radius: 25px;
+  max-width: 760px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.book-cover {
+  width: 210px;
+  height: 280px;
+  background: #6b3e26;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.book-cover:hover {
+  transform: scale(1.06);
+}
+
+.book {
+  display: none;
+  background: #fff8f0;
+  color: #5c2c2c;
+  width: 90%;
+  max-width: 420px;
+  min-height: 540px;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.book img {
+  width: 100%;
+  max-height: 430px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 20px;
+  background: #ff5fa2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff2f88;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  width: 18px;
+  height: 18px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 6s linear infinite;
+  z-index: 1;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before { top: -9px; left: 0; }
+.heart::after { left: -9px; top: 0; }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>Для тебя, Сашулька ❤️</header>
+
+<div id="popup">С днём рождения, Сашулька 🎉</div>
+
+<div class="section">
+  <h1>Сюрприз для тебя ❤️</h1>
+  <p>Листай вниз 👇</p>
+</div>
+
+<div class="section">
+  <div class="card">
+    <h2>Моё поздравление 💌</h2>
+    <p>
+      С днём рождения, Саша 💛
+Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни, и словами это всё передать очень сложно… Но я попробую.
+Мы с тобой уже 14 лет вместе. Четырнадцать. Это не просто цифра — это целая жизнь, прожитая бок о бок. Мы с тобой прошли всё: детский сад, школу, младшие классы, взросление, первые переживания, радости, слёзы, смех до боли в животе… Мы росли вместе, менялись вместе, и при этом каким-то чудом всегда оставались рядом.
+Ты для меня не просто подруга — ты человек, который знает меня настоящую. С моими странностями, настроениями, моментами, когда я могу быть невыносимой… И всё равно ты остаёшься рядом. И это бесценно.
+Я очень ценю тебя. Правда. Даже если иногда кажется, что я где-то не рядом, куда-то не поехала, что-то не так сделала или не послушала — знай, что ты всегда в моём сердце. И если ты напишешь, особенно если скажешь, что это важно — я всегда отвечу. Потому что ты для меня важна. Очень.
+Даже все твои кружки, дела, занятость — я стараюсь слушать, вникать, потому что для меня важно всё, что связано с тобой. Потому что для меня важна ты.
+Я хочу, чтобы мы виделись чаще. Хочу больше моментов с тобой, больше смеха, прогулок, разговоров ни о чём и обо всём одновременно. Надеюсь, этим летом мы проведём вместе кучу времени — так, как раньше, или даже лучше.
+Я до сих пор помню столько наших моментов… Как мы слушали Mimi Mamama и могли включать её по сто раз подряд. Как катались на качелях и придумывали какие-то свои миры. Как гуляли допоздна, обсуждали всё подряд, смеялись так, что невозможно было остановиться. Как поддерживали друг друга в сложные моменты, даже когда сами не до конца понимали, что происходит.
+Помню, как мы могли просто сидеть рядом — и этого уже было достаточно. Потому что с тобой всегда спокойно, тепло и по-настоящему.
+И я уверена, что это только начало. Нам ещё столько всего предстоит: новые воспоминания, поездки, разговоры, глупости, мечты… Я хочу пройти всё это с тобой так же, как мы прошли эти 14 лет — рука об руку.
+Саша, я тебя очень сильно люблю. Ценю. Уважаю. Горжусь тем, что ты есть в моей жизни.
+Пусть у тебя всё получается. Пусть ты будешь счастлива. Пусть рядом будут люди, которые тебя ценят так же, как ты того заслуживаешь. И пусть я всегда остаюсь среди этих людей.
+С днём рождения тебя, моя родная ❤️
+      <br><br>
+      Можешь просто заменить этот текст на свой.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Наша маленькая книжечка 📖</h2>
+  <div class="book-cover" onclick="openBook()">Открыть 📖</div>
+
+  <div class="book" id="book">
+    <h3 id="pageNumber">Фото 1 из 18</h3>
+    <img id="photo" src="photo_2026-05-01_11-58-20.jpg" alt="Фото">
+    
+    <div class="controls">
+      <button onclick="prevPhoto()">⬅ Назад</button>
+      <button onclick="nextPhoto()">Вперёд ➡</button>
+    </div>
+  </div>
+</div>
+
+<script>
+setTimeout(() => {
+  document.getElementById("popup").style.display = "block";
+}, 1000);
+
+setTimeout(() => {
+  document.getElementById("popup").style.display = "none";
+}, 4500);
+
+for (let i = 0; i < 25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+  document.body.appendChild(heart);
+}
+
+const photos = [
+  "photo_2026-05-01_11-58-20.jpg",
+  "photo_2026-05-01_11-58-22.jpg",
+  "photo_2026-05-01_11-58-27.jpg",
+  "photo_2026-05-01_12-24-50.jpg",
+  "photo_2026-05-01_12-24-53.jpg",
+  "photo_2026-05-01_12-24-54.jpg",
+  "photo_2026-05-01_12-24-55.jpg",
+  "photo_2026-05-01_12-24-56.jpg",
+  "photo_2026-05-01_12-24-58.jpg",
+  "photo_2026-05-01_12-24-59.jpg",
+  "photo_2026-05-01_12-25-00.jpg",
+  "photo_2026-05-01_12-25-01.jpg",
+  "photo_2026-05-01_12-25-02.jpg",
+  "photo_2026-05-01_12-25-03.jpg",
+  "photo_2026-05-01_12-25-04.jpg",
+  "photo_2026-05-01_12-25-05.jpg",
+  "photo_2026-05-01_12-25-06.jpg",
+  "photo_2026-05-01_12-25-07.jpg"
+];
+
+let current = 0;
+
+function openBook() {
+  document.querySelector(".book-cover").style.display = "none";
+  document.getElementById("book").style.display = "block";
+}
+
+function showPhoto() {
+  document.getElementById("photo").src = photos[current];
+  document.getElementById("pageNumber").innerText =
+    "Фото " + (current + 1) + " из " + photos.length;
+}
+
+function nextPhoto() {
+  current++;
+  if (current >= photos.length) current = 0;
+  showPhoto();
+}
+
+function prevPhoto() {
+  current--;
+  if (current < 0) current = photos.length - 1;
+  showPhoto();
+}
+</script>
+
+</body>
+</html>
