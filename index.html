@@ -11,12 +11,12 @@ body{
 margin:0;
 font-family:'Bubbleboddy Neue Trial',sans-serif;
 background:linear-gradient(135deg,#ff6f91,#ffc75f);
-color:white;
 overflow-x:hidden;
+color:white;
 text-align:center;
 }
 
-/* главный экран */
+/* ГЛАВНЫЙ ЭКРАН */
 .hero{
 height:100vh;
 display:flex;
@@ -27,51 +27,80 @@ align-items:center;
 
 .title{
 font-size:90px;
-text-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 .scroll{
 margin-top:40px;
 font-size:30px;
-animation:bounce 1.5s infinite;
 }
 
-@keyframes bounce{
-50%{transform:translateY(10px);}
-}
-
-/* сердечки */
+/* СЕРДЕЧКИ */
 .heart{
 position:fixed;
 bottom:-20px;
-font-size:22px;
+font-size:20px;
 animation:float linear infinite;
 }
-
 @keyframes float{
 to{transform:translateY(-120vh);}
 }
 
-/* конфетти */
-.confetti{
-position:fixed;
-top:-10px;
-width:10px;
-height:10px;
-animation:fall linear infinite;
+/* КНИГА */
+.book-scene{
+margin-top:80px;
+perspective:2000px;
 }
 
-@keyframes fall{
-to{transform:translateY(110vh);}
+/* ОБЛОЖКА */
+.cover{
+width:320px;
+height:420px;
+margin:auto;
+background:linear-gradient(135deg,#7b2d43,#d85b8a);
+border-radius:15px;
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
+position:relative;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-/* книга */
+.cover-text{
+font-size:50px;
+color:white;
+}
+
+/* ЗАМОК */
+.lock{
+position:absolute;
+right:-25px;
+top:180px;
+width:50px;
+height:40px;
+background:gold;
+border-radius:10px;
+}
+
+.lock::before{
+content:"";
+position:absolute;
+width:30px;
+height:25px;
+border:5px solid gold;
+border-bottom:none;
+border-radius:20px 20px 0 0;
+top:-20px;
+left:10px;
+}
+
+/* ОТКРЫТАЯ КНИГА */
 .book{
+display:none;
 width:800px;
 height:500px;
-margin:80px auto;
+margin:auto;
 position:relative;
-perspective:2000px;
 }
 
 .page{
@@ -81,16 +110,14 @@ position:absolute;
 top:0;
 background:white;
 overflow:hidden;
-border-radius:12px;
-backface-visibility:hidden;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
 }
 
 .left{left:0;}
-
 .right{
 right:0;
 transform-origin:left;
-transform-style:preserve-3d;
 transition:1s;
 }
 
@@ -104,13 +131,25 @@ height:100%;
 object-fit:cover;
 }
 
-/* кнопки */
+/* ПЕРЕПЛЁТ */
+.spine{
+position:absolute;
+left:50%;
+top:0;
+width:10px;
+height:100%;
+background:#ccc;
+transform:translateX(-50%);
+}
+
+/* КНОПКИ */
 .controls{
 margin-top:20px;
+display:none;
 }
 
 button{
-padding:12px 22px;
+padding:10px 20px;
 border:none;
 border-radius:20px;
 background:#ff4d6d;
@@ -124,7 +163,6 @@ cursor:pointer;
 <body>
 
 <script>
-/* сердечки */
 for(let i=0;i<30;i++){
 let h=document.createElement("div");
 h.className="heart";
@@ -132,16 +170,6 @@ h.innerHTML="❤️";
 h.style.left=Math.random()*100+"%";
 h.style.animationDuration=(3+Math.random()*4)+"s";
 document.body.appendChild(h);
-}
-
-/* конфетти */
-for(let i=0;i<70;i++){
-let c=document.createElement("div");
-c.className="confetti";
-c.style.left=Math.random()*100+"%";
-c.style.background=["red","yellow","blue","pink"][Math.floor(Math.random()*4)];
-c.style.animationDuration=(2+Math.random()*3)+"s";
-document.body.appendChild(c);
 }
 </script>
 
@@ -152,7 +180,16 @@ document.body.appendChild(c);
 
 <h2>Наша история 📖</h2>
 
-<div class="book">
+<div class="book-scene">
+
+<div class="cover" onclick="openBook()">
+<div class="cover-text">Открыть</div>
+<div class="lock"></div>
+</div>
+
+<div class="book" id="book">
+<div class="spine"></div>
+
 <div class="page left">
 <img id="leftImg">
 </div>
@@ -162,9 +199,11 @@ document.body.appendChild(c);
 </div>
 </div>
 
-<div class="controls">
-<button onclick="prev()">← Назад</button>
-<button onclick="next()">Вперёд →</button>
+<div class="controls" id="controls">
+<button onclick="prev()">←</button>
+<button onclick="next()">→</button>
+</div>
+
 </div>
 
 <script>
@@ -191,6 +230,13 @@ const photos=[
 
 let index=0;
 
+function openBook(){
+document.querySelector(".cover").style.display="none";
+document.getElementById("book").style.display="block";
+document.getElementById("controls").style.display="block";
+render();
+}
+
 function render(){
 document.getElementById("leftImg").src=photos[index];
 document.getElementById("rightImg").src=photos[index+1];
@@ -199,28 +245,24 @@ document.getElementById("rightImg").src=photos[index+1];
 function next(){
 if(index<photos.length-2){
 document.getElementById("rightPage").classList.add("flip");
-
 setTimeout(()=>{
 index+=2;
 render();
 document.getElementById("rightPage").classList.remove("flip");
-},700);
+},800);
 }
 }
 
 function prev(){
 if(index>=2){
 document.getElementById("rightPage").classList.add("flip");
-
 setTimeout(()=>{
 index-=2;
 render();
 document.getElementById("rightPage").classList.remove("flip");
-},700);
+},800);
 }
 }
-
-render();
 </script>
 
 </body>
