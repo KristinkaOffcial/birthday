@@ -3,636 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>С днём рождения, Сашулька ❤️</title>
 
 <style>
 @import url('https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
-* {
-  box-sizing: border-box;
+body{
+margin:0;
+font-family:'Bubbleboddy Neue Trial',sans-serif;
+background:linear-gradient(135deg,#ff6f91,#ffc75f);
+color:white;
+overflow-x:hidden;
+text-align:center;
 }
 
-html {
-  scroll-behavior: smooth;
+/* главный экран */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
-body {
-  margin: 0;
-  overflow-x: hidden;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  background:
-    radial-gradient(circle at top left, #ffd6e8, transparent 35%),
-    radial-gradient(circle at bottom right, #b794ff, transparent 35%),
-    linear-gradient(135deg, #ff5f8f, #ff9671, #ffc75f);
+.title{
+font-size:90px;
+text-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.45) 1px, transparent 1px);
-  background-size: 35px 35px;
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
+.scroll{
+margin-top:40px;
+font-size:30px;
+animation:bounce 1.5s infinite;
 }
 
-section {
-  min-height: 100vh;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px;
-  text-align: center;
+/* анимации */
+@keyframes bounce{
+50%{transform:translateY(10px);}
 }
 
-/* Главный экран */
-.hero {
-  flex-direction: column;
+/* сердечки */
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:22px;
+animation:float linear infinite;
 }
 
-.hero-title {
-  font-family: 'Bubbleboddy Neue Trial', cursive;
-  font-size: clamp(58px, 10vw, 120px);
-  line-height: 1;
-  margin: 0;
-  text-shadow: 0 12px 35px rgba(120, 0, 70, 0.35);
-  animation: popIn 1.3s ease forwards;
+@keyframes float{
+to{transform:translateY(-120vh);}
 }
 
-.hero-subtitle {
-  margin-top: 30px;
-  font-size: clamp(24px, 4vw, 44px);
-  font-weight: 800;
-  text-shadow: 0 7px 20px rgba(0,0,0,0.25);
-  animation: fadeUp 1.6s ease forwards;
+/* конфетти */
+.confetti{
+position:fixed;
+top:-10px;
+width:10px;
+height:10px;
+animation:fall linear infinite;
 }
 
-.scroll-down {
-  margin-top: 70px;
-  font-size: 30px;
-  font-weight: 800;
-  animation: bounce 1.5s infinite;
+@keyframes fall{
+to{transform:translateY(110vh);}
 }
 
-/* Поздравление */
-.card {
-  max-width: 900px;
-  padding: 45px 35px;
-  border-radius: 35px;
-  background: rgba(255,255,255,0.23);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.45);
-  box-shadow: 0 25px 70px rgba(110,0,70,0.25);
+/* книга */
+.book{
+width:800px;
+height:500px;
+margin:80px auto;
+position:relative;
+perspective:2000px;
 }
 
-.card h2 {
-  font-family: 'Bubbleboddy Neue Trial', cursive;
-  font-size: clamp(48px, 7vw, 82px);
-  margin: 0 0 25px;
+.page{
+width:50%;
+height:100%;
+position:absolute;
+top:0;
+background:white;
+color:black;
+overflow:hidden;
+border-radius:12px;
+backface-visibility:hidden;
 }
 
-.card p {
-  font-size: 20px;
-  line-height: 1.8;
-  white-space: pre-line;
+.left{left:0;}
+
+.right{
+right:0;
+transform-origin:left;
+transform-style:preserve-3d;
+transition:1s;
 }
 
-/* История */
-.story-wrap {
-  width: 100%;
+.right.flip{
+transform:rotateY(-180deg);
 }
 
-.story-title {
-  font-family: 'Bubbleboddy Neue Trial', cursive;
-  font-size: clamp(56px, 8vw, 96px);
-  margin-bottom: 40px;
-  text-shadow: 0 10px 30px rgba(120,0,70,0.35);
+.page img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-/* Книга */
-.book-area {
-  perspective: 2200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+/* кнопки */
+.controls{
+margin-top:20px;
 }
 
-.book-cover {
-  width: 310px;
-  height: 430px;
-  position: relative;
-  border-radius: 24px 14px 14px 24px;
-  cursor: pointer;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,0.35), transparent 14%),
-    radial-gradient(circle at center, rgba(255,255,255,0.18), transparent 40%),
-    linear-gradient(135deg, #6b1f3a, #d85b8a, #7b2d43);
-  box-shadow:
-    0 35px 90px rgba(60,0,40,0.48),
-    inset 0 0 0 7px rgba(255,230,170,0.48),
-    inset 0 0 0 15px rgba(255,255,255,0.08);
-  transform-style: preserve-3d;
-  transition: 0.9s ease;
-}
-
-.book-cover:hover {
-  transform: rotateY(-14deg) scale(1.04);
-}
-
-.book-cover::before {
-  content: "";
-  position: absolute;
-  top: 28px;
-  left: 25px;
-  right: 25px;
-  bottom: 28px;
-  border: 2px solid rgba(255,235,180,0.85);
-  border-radius: 20px;
-}
-
-.book-cover::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 35px;
-  height: 100%;
-  width: 18px;
-  background: rgba(0,0,0,0.22);
-  border-radius: 20px;
-}
-
-.cover-text {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Bubbleboddy Neue Trial', cursive;
-  font-size: 70px;
-  color: #fff3c4;
-  text-shadow: 0 6px 16px rgba(0,0,0,0.4);
-  z-index: 2;
-}
-
-/* Замочек */
-.lock {
-  position: absolute;
-  right: -35px;
-  top: 180px;
-  width: 72px;
-  height: 58px;
-  background: linear-gradient(135deg, #ffe082, #b7791f);
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-  z-index: 4;
-}
-
-.lock::before {
-  content: "";
-  position: absolute;
-  width: 42px;
-  height: 38px;
-  border: 8px solid #ffe082;
-  border-bottom: none;
-  border-radius: 35px 35px 0 0;
-  top: -32px;
-  left: 15px;
-}
-
-.lock::after {
-  content: "♥";
-  position: absolute;
-  color: #7b2d43;
-  font-size: 28px;
-  top: 12px;
-  left: 23px;
-}
-
-/* Открытая книга */
-.book {
-  display: none;
-  width: min(94vw, 980px);
-  height: 620px;
-  position: relative;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 35px 70px rgba(60,0,40,0.45));
-}
-
-.book-bg {
-  position: absolute;
-  inset: 0;
-  border-radius: 26px;
-  background:
-    linear-gradient(90deg, #f5dfbd 0%, #fff4d8 48%, #d4ad7d 50%, #fff4d8 52%, #f7dfbd 100%);
-  box-shadow:
-    inset 0 0 35px rgba(120,70,30,0.22),
-    0 30px 90px rgba(60,0,40,0.35);
-}
-
-.book-bg::before {
-  content: "";
-  position: absolute;
-  top: 28px;
-  bottom: 28px;
-  left: 50%;
-  width: 6px;
-  transform: translateX(-50%);
-  background: rgba(105,60,35,0.28);
-  border-radius: 999px;
-  box-shadow: 0 0 25px rgba(70,40,20,0.35);
-}
-
-/* Страницы */
-.page {
-  position: absolute;
-  top: 35px;
-  left: 50%;
-  width: calc(50% - 45px);
-  height: calc(100% - 70px);
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(.2,.8,.2,1);
-  z-index: 20;
-}
-
-.page.flipped {
-  transform: rotateY(-180deg);
-}
-
-.page-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 35%),
-    linear-gradient(135deg, #fff8e8, #f4d9ac);
-  color: #6b3345;
-  padding: 22px;
-  box-shadow:
-    inset 0 0 25px rgba(130,80,35,0.18),
-    0 12px 25px rgba(80,40,20,0.18);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.page-back {
-  transform: rotateY(180deg);
-  background:
-    radial-gradient(circle at top right, rgba(255,255,255,0.8), transparent 35%),
-    linear-gradient(135deg, #f4d9ac, #fff8e8);
-}
-
-.page-face img {
-  width: 100%;
-  height: 390px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 8px solid white;
-  box-shadow: 0 14px 30px rgba(80,40,20,0.24);
-}
-
-.page-text {
-  margin-top: 18px;
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.left-static {
-  position: absolute;
-  top: 35px;
-  left: 35px;
-  width: calc(50% - 45px);
-  height: calc(100% - 70px);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 35%),
-    linear-gradient(135deg, #fff8e8, #f4d9ac);
-  color: #6b3345;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: inset 0 0 25px rgba(130,80,35,0.18);
-}
-
-.left-static h3 {
-  font-family: 'Bubbleboddy Neue Trial', cursive;
-  font-size: 54px;
-  margin: 0 0 20px;
-}
-
-.left-static p {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.controls {
-  margin-top: 35px;
-  display: none;
-  gap: 18px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.controls button {
-  border: none;
-  padding: 15px 26px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff4f9a, #ff91b8);
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 12px 28px rgba(130,0,70,0.28);
-  transition: 0.25s;
-}
-
-.controls button:hover {
-  transform: scale(1.06);
-}
-
-.page-counter {
-  font-size: 20px;
-  font-weight: 800;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-/* Сердечки и конфетти */
-.heart {
-  position: fixed;
-  bottom: -30px;
-  font-size: 24px;
-  pointer-events: none;
-  z-index: 1;
-  animation: heartFloat linear infinite;
-}
-
-.confetti {
-  position: fixed;
-  top: -20px;
-  width: 10px;
-  height: 18px;
-  pointer-events: none;
-  z-index: 1;
-  animation: confettiFall linear infinite;
-}
-
-/* Анимации */
-@keyframes popIn {
-  from {
-    opacity: 0;
-    transform: scale(0.65) translateY(45px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(35px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(13px); }
-}
-
-@keyframes heartFloat {
-  from {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-115vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes confettiFall {
-  from {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(115vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-@keyframes unlock {
-  0% { transform: rotate(0deg) scale(1); }
-  40% { transform: rotate(-12deg) scale(1.08); }
-  100% { transform: translateY(30px) rotate(20deg) scale(0); opacity: 0; }
-}
-
-.lock.opened {
-  animation: unlock 0.9s forwards;
-}
-
-@media (max-width: 760px) {
-  .book {
-    height: 540px;
-  }
-
-  .left-static {
-    display: none;
-  }
-
-  .book-bg::before {
-    display: none;
-  }
-
-  .page {
-    left: 35px;
-    width: calc(100% - 70px);
-  }
-
-  .page-face img {
-    height: 340px;
-  }
-
-  .cover-text {
-    font-size: 58px;
-  }
+button{
+padding:12px 22px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-  <h1 class="hero-title">С днём рождения,<br>Сашулька ❤️</h1>
-  <div class="hero-subtitle">Этот маленький мир сделан только для тебя</div>
-  <div class="scroll-down">Листай вниз ↓</div>
-</section>
+<script>
+/* сердечки */
+for(let i=0;i<30;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"%";
+h.style.animationDuration=(3+Math.random()*4)+"s";
+document.body.appendChild(h);
+}
 
-<section>
-  <div class="card">
-    <h2>Моё поздравление 💌</h2>
-    <p>
-ТУТ БУДЕТ ТВОЁ ПОЗДРАВЛЕНИЕ.
+/* конфетти */
+for(let i=0;i<70;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"%";
+c.style.background=["red","yellow","blue","pink"][Math.floor(Math.random()*4)];
+c.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(c);
+}
+</script>
 
-Потом ты мне его скинешь, и я вставлю его красиво.
-    </p>
-  </div>
-</section>
+<div class="hero">
+<div class="title">С днём рождения,<br>Сашулька ❤️</div>
+<div class="scroll">Листай вниз ↓</div>
+</div>
 
-<section>
-  <div class="story-wrap">
-    <div class="story-title">Наша история</div>
+<h2>Наша история 📖</h2>
 
-    <div class="book-area">
-      <div class="book-cover" id="bookCover" onclick="openBook()">
-        <div class="cover-text">Открыть</div>
-        <div class="lock" id="lock"></div>
-      </div>
+<div class="book">
+<div class="page left">
+<img id="leftImg">
+</div>
 
-      <div class="book" id="book">
-        <div class="book-bg"></div>
+<div class="page right" id="rightPage">
+<img id="rightImg">
+</div>
+</div>
 
-        <div class="left-static">
-          <h3>Наша история</h3>
-          <p>Листай страницы и вспоминай наши моменты ❤️</p>
-        </div>
-
-        <div id="pagesContainer"></div>
-      </div>
-
-      <div class="controls" id="controls">
-        <button onclick="prevPage()">← Назад</button>
-        <div class="page-counter" id="counter">1 / 18</div>
-        <button onclick="nextPage()">Вперёд →</button>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="controls">
+<button onclick="prev()">← Назад</button>
+<button onclick="next()">Вперёд →</button>
+</div>
 
 <script>
-/* СТАРЫЕ ФОТКИ */
-const photos = [
-  "photo_2026-05-01_11-58-20.jpg",
-  "photo_2026-05-01_11-58-22.jpg",
-  "photo_2026-05-01_11-58-27.jpg",
-  "photo_2026-05-01_12-24-50.jpg",
-  "photo_2026-05-01_12-24-53.jpg",
-  "photo_2026-05-01_12-24-54.jpg",
-  "photo_2026-05-01_12-24-55.jpg",
-  "photo_2026-05-01_12-24-56.jpg",
-  "photo_2026-05-01_12-24-58.jpg",
-  "photo_2026-05-01_12-24-59.jpg",
-  "photo_2026-05-01_12-25-00.jpg",
-  "photo_2026-05-01_12-25-01.jpg",
-  "photo_2026-05-01_12-25-02.jpg",
-  "photo_2026-05-01_12-25-03.jpg",
-  "photo_2026-05-01_12-25-04.jpg",
-  "photo_2026-05-01_12-25-05.jpg",
-  "photo_2026-05-01_12-25-06.jpg",
-  "photo_2026-05-01_12-25-07.jpg"
+const photos=[
+"photo_2026-05-01_11-58-20.jpg",
+"photo_2026-05-01_11-58-22.jpg",
+"photo_2026-05-01_11-58-27.jpg",
+"photo_2026-05-01_12-24-50.jpg",
+"photo_2026-05-01_12-24-53.jpg",
+"photo_2026-05-01_12-24-54.jpg",
+"photo_2026-05-01_12-24-55.jpg",
+"photo_2026-05-01_12-24-56.jpg",
+"photo_2026-05-01_12-24-58.jpg",
+"photo_2026-05-01_12-24-59.jpg",
+"photo_2026-05-01_12-25-00.jpg",
+"photo_2026-05-01_12-25-01.jpg",
+"photo_2026-05-01_12-25-02.jpg",
+"photo_2026-05-01_12-25-03.jpg",
+"photo_2026-05-01_12-25-04.jpg",
+"photo_2026-05-01_12-25-05.jpg",
+"photo_2026-05-01_12-25-06.jpg",
+"photo_2026-05-01_12-25-07.jpg"
 ];
 
-let currentPage = 0;
+let index=0;
 
-/* Сердечки */
-for (let i = 0; i < 45; i++) {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 4 + Math.random() * 6 + "s";
-  heart.style.animationDelay = Math.random() * 5 + "s";
-  document.body.appendChild(heart);
+function render(){
+document.getElementById("leftImg").src=photos[index];
+document.getElementById("rightImg").src=photos[index+1];
 }
 
-/* Конфетти */
-const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4d96ff", "#c77dff", "#ffffff", "#ff9f1c"];
+function next(){
+if(index<photos.length-2){
+document.getElementById("rightPage").classList.add("flip");
 
-for (let i = 0; i < 120; i++) {
-  const confetti = document.createElement("div");
-  confetti.className = "confetti";
-  confetti.style.left = Math.random() * 100 + "vw";
-  confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-  confetti.style.animationDuration = 3 + Math.random() * 5 + "s";
-  confetti.style.animationDelay = Math.random() * 4 + "s";
-  confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
-  document.body.appendChild(confetti);
+setTimeout(()=>{
+index+=2;
+render();
+document.getElementById("rightPage").classList.remove("flip");
+},700);
+}
 }
 
-/* Создаём страницы книги */
-const pagesContainer = document.getElementById("pagesContainer");
+function prev(){
+if(index>=2){
+document.getElementById("rightPage").classList.add("flip");
 
-photos.forEach((photo, index) => {
-  const page = document.createElement("div");
-  page.className = "page";
-  page.style.zIndex = photos.length - index;
-
-  page.innerHTML = `
-    <div class="page-face">
-      <img src="${photo}" alt="Фото ${index + 1}">
-      <div class="page-text">Страница ${index + 1} нашей истории ❤️</div>
-    </div>
-    <div class="page-face page-back">
-      <img src="${photo}" alt="Фото ${index + 1}">
-      <div class="page-text">Наши воспоминания ✨</div>
-    </div>
-  `;
-
-  pagesContainer.appendChild(page);
-});
-
-const pages = document.querySelectorAll(".page");
-
-function openBook() {
-  document.getElementById("lock").classList.add("opened");
-
-  setTimeout(() => {
-    document.getElementById("bookCover").style.display = "none";
-    document.getElementById("book").style.display = "block";
-    document.getElementById("controls").style.display = "flex";
-    updateCounter();
-  }, 700);
+setTimeout(()=>{
+index-=2;
+render();
+document.getElementById("rightPage").classList.remove("flip");
+},700);
+}
 }
 
-function nextPage() {
-  if (currentPage < pages.length) {
-    pages[currentPage].classList.add("flipped");
-    currentPage++;
-    updateCounter();
-  }
-}
-
-function prevPage() {
-  if (currentPage > 0) {
-    currentPage--;
-    pages[currentPage].classList.remove("flipped");
-    updateCounter();
-  }
-}
-
-function updateCounter() {
-  document.getElementById("counter").innerText =
-    Math.min(currentPage + 1, photos.length) + " / " + photos.length;
-}
+render();
 </script>
 
 </body>
