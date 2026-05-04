@@ -6,18 +6,13 @@
 
 <title>Саше ❤️</title>
 
-<link href="https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/stpageflip@2.0.7/dist/page-flip.browser.min.js"></script>
-
 <style>
 body{
 margin:0;
-font-family:'Bubbleboddy Neue Trial', sans-serif;
+font-family:sans-serif;
 background:linear-gradient(135deg,#ff6f91,#ffc75f);
-color:white;
 text-align:center;
-overflow-x:hidden;
+color:white;
 }
 
 .hero{
@@ -33,37 +28,45 @@ font-size:70px;
 }
 
 .cover{
-width:280px;
-height:400px;
+width:260px;
+height:360px;
 background:#d85b8a;
 margin:40px auto;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 font-size:40px;
 cursor:pointer;
-border-radius:15px;
+border-radius:12px;
 box-shadow:0 20px 50px rgba(0,0,0,0.4);
 }
 
-#book{
+.book{
 display:none;
-margin:auto;
-width:800px;
-height:500px;
-}
-
-.page{
+margin:30px auto;
+width:300px;
+height:400px;
 background:white;
-display:flex;
-align-items:center;
-justify-content:center;
+border-radius:10px;
+overflow:hidden;
 }
 
-.page img{
+.book img{
 width:100%;
 height:100%;
 object-fit:cover;
+}
+
+.buttons{
+margin-top:20px;
+display:none;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+margin:10px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -76,36 +79,52 @@ object-fit:cover;
 
 <div class="cover" onclick="openBook()">Открыть</div>
 
-<div id="book"></div>
+<div class="book" id="book">
+<img id="photo">
+</div>
+
+<div class="buttons" id="buttons">
+<button onclick="prev()">←</button>
+<button onclick="next()">→</button>
+</div>
 
 <script>
+
 const photos = [
 "photo_2026-05-04_10-17-11.jpg",
 "photo_2026-05-04_10-17-10.jpg",
 "photo_2026-05-04_10-17-09.jpg",
-"photo_2026-05-04_10-17-08.jpg"
+"photo_2026-05-04_10-17-08.jpg",
+"photo_2026-05-04_10-17-07.jpg"
 ];
 
-function openBook(){
+let index = 0;
 
+function openBook(){
 document.querySelector(".cover").style.display="none";
 document.getElementById("book").style.display="block";
-
-const pageFlip = new St.PageFlip(
-document.getElementById("book"),
-{
-width: 400,
-height: 500,
-showCover: true
+document.getElementById("buttons").style.display="block";
+show();
 }
-);
 
-const pages = photos.map(p =>
-`<div class="page"><img src="${p}"></div>`
-);
-
-pageFlip.loadFromHTML(pages);
+function show(){
+document.getElementById("photo").src = photos[index];
 }
+
+function next(){
+if(index < photos.length-1){
+index++;
+show();
+}
+}
+
+function prev(){
+if(index > 0){
+index--;
+show();
+}
+}
+
 </script>
 
 </body>
