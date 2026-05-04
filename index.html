@@ -7,10 +7,9 @@
 <title>Саше ❤️</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stpageflip@2.0.7/dist/page-flip.min.css">
+<link href="https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial" rel="stylesheet">
 
 <style>
-@import url('https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial');
-
 body{
 margin:0;
 background:linear-gradient(135deg,#ff6f91,#ffc75f);
@@ -19,7 +18,6 @@ text-align:center;
 color:white;
 }
 
-/* главный экран */
 .hero{
 height:100vh;
 display:flex;
@@ -29,35 +27,28 @@ align-items:center;
 }
 
 .title{
-font-size:90px;
+font-size:80px;
 }
 
-/* обложка */
 .cover{
-width:320px;
-height:440px;
+width:300px;
+height:420px;
 margin:60px auto;
-background:linear-gradient(135deg,#6b1f3a,#d85b8a);
-border-radius:20px;
+background:linear-gradient(135deg,#5d1632,#d85b8a);
+border-radius:15px;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:60px;
+font-size:50px;
 cursor:pointer;
-box-shadow:0 30px 70px rgba(0,0,0,0.5);
-transition:.4s;
+box-shadow:0 30px 60px rgba(0,0,0,0.4);
 }
 
-.cover:hover{
-transform:scale(1.05) rotateY(-5deg);
-}
-
-/* книга */
 #book{
 display:none;
 margin:auto;
-width:900px;
-height:600px;
+width:800px;
+height:500px;
 }
 
 .page{
@@ -88,6 +79,23 @@ object-fit:cover;
 <script src="https://cdn.jsdelivr.net/npm/stpageflip@2.0.7/dist/page-flip.browser.min.js"></script>
 
 <script>
+const photos = [
+"photo_2026-05-04_10-17-11.jpg",
+"photo_2026-05-04_10-17-10.jpg",
+"photo_2026-05-04_10-17-09.jpg",
+"photo_2026-05-04_10-17-08.jpg",
+"photo_2026-05-04_10-17-07.jpg",
+"photo_2026-05-04_10-17-04.jpg",
+"photo_2026-05-04_10-17-02.jpg",
+"photo_2026-05-04_10-17-01.jpg",
+"photo_2026-05-04_10-17-00.jpg",
+"photo_2026-05-04_10-16-59.jpg",
+"photo_2026-05-04_10-16-57.jpg",
+"photo_2026-05-04_10-16-56.jpg",
+"photo_2026-05-04_10-16-55.jpg",
+"photo_2026-05-04_10-16-54.jpg",
+"photo_2026-05-04_10-16-53.jpg"
+];
 
 let pageFlip;
 
@@ -97,17 +105,20 @@ document.querySelector(".cover").style.display="none";
 document.getElementById("book").style.display="block";
 
 pageFlip = new St.PageFlip(document.getElementById("book"), {
-width: 450,
-height: 600,
+width: 400,
+height: 500,
 showCover: true
 });
 
 let pages = [];
 
-/* автоматически 1–100 фото */
-for(let i=1;i<=100;i++){
-pages.push(`<div class="page"><img src="img/${i}.jpg"></div>`);
-}
+photos.forEach(p => {
+pages.push(`
+<div class="page">
+<img src="${p}" onerror="this.src='https://via.placeholder.com/400x500?text=NO+PHOTO'">
+</div>
+`);
+});
 
 pageFlip.loadFromHTML(pages);
 }
