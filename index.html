@@ -6,16 +6,20 @@
 
 <title>Саше ❤️</title>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stpageflip@2.0.7/dist/page-flip.min.css">
+
 <style>
+@import url('https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial');
+
 body{
 margin:0;
-font-family:sans-serif;
 background:linear-gradient(135deg,#ff6f91,#ffc75f);
+font-family:'Bubbleboddy Neue Trial',sans-serif;
 text-align:center;
 color:white;
+overflow-x:hidden;
 }
 
-/* экран */
 .hero{
 height:100vh;
 display:flex;
@@ -25,60 +29,46 @@ align-items:center;
 }
 
 .title{
-font-size:70px;
+font-size:80px;
 }
 
-/* обложка */
+.scroll{
+margin-top:40px;
+font-size:28px;
+}
+
 .cover{
-width:260px;
-height:360px;
-background:linear-gradient(135deg,#6b1f3a,#d85b8a);
-margin:30px auto;
+width:300px;
+height:420px;
+margin:60px auto;
+background:linear-gradient(135deg,#5d1632,#d85b8a);
+border-radius:15px;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:40px;
+font-size:50px;
 cursor:pointer;
-border-radius:15px;
-box-shadow:0 20px 50px rgba(0,0,0,0.4);
+box-shadow:0 30px 60px rgba(0,0,0,0.4);
 }
 
-/* книга */
-.book{
+#book{
 display:none;
-width:320px;
-height:420px;
 margin:auto;
-background:#fdf1d3;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 20px 50px rgba(0,0,0,0.5);
-border:8px solid #e0c097;
+width:800px;
+height:500px;
 }
 
-/* фото */
-.book img{
+.page{
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.page img{
 width:100%;
 height:100%;
 object-fit:cover;
-border-radius:6px;
-}
-
-/* кнопки */
-.controls{
-display:none;
-margin-top:20px;
-}
-
-button{
-padding:10px 20px;
-font-size:18px;
-margin:10px;
-cursor:pointer;
-border:none;
-border-radius:10px;
-background:#ff4d6d;
-color:white;
 }
 </style>
 </head>
@@ -86,22 +76,19 @@ color:white;
 <body>
 
 <div class="hero">
-<div class="title">С днём рождения ❤️</div>
+<div class="title">С днём рождения,<br>Сашулька ❤️</div>
+<div class="scroll">Листай вниз ↓</div>
 </div>
+
+<h2>Наша история 📖</h2>
 
 <div class="cover" onclick="openBook()">Открыть</div>
 
-<div class="book" id="book">
-<img id="photo">
-</div>
+<div id="book"></div>
 
-<div class="controls" id="controls">
-<button onclick="prev()">←</button>
-<button onclick="next()">→</button>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/stpageflip@2.0.7/dist/page-flip.browser.min.js"></script>
 
 <script>
-
 const photos = [
 "photo_2026-05-04_10-17-11.jpg",
 "photo_2026-05-04_10-17-10.jpg",
@@ -185,33 +172,25 @@ const photos = [
 "photo_2026-05-04_10-15-21.jpg"
 ];
 
-let index = 0;
+let pageFlip;
 
 function openBook(){
 document.querySelector(".cover").style.display="none";
 document.getElementById("book").style.display="block";
-document.getElementById("controls").style.display="block";
-show();
-}
 
-function show(){
-document.getElementById("photo").src = photos[index];
-}
+pageFlip = new St.PageFlip(document.getElementById("book"), {
+width: 400,
+height: 500,
+showCover: true,
+mobileScrollSupport: false
+});
 
-function next(){
-if(index < photos.length-1){
-index++;
-show();
-}
-}
+const pages = photos.map(photo => {
+return `<div class="page"><img src="${photo}"></div>`;
+});
 
-function prev(){
-if(index > 0){
-index--;
-show();
+pageFlip.loadFromHTML(pages);
 }
-}
-
 </script>
 
 </body>
