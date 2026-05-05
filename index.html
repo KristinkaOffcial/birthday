@@ -7,15 +7,16 @@
 <title>Саше 💛</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stpageflip@2.0.7/dist/page-flip.min.css">
-<link href="https://fonts.cdnfonts.com/css/bubbleboddy-neue-trial" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
-font-family:'Bubbleboddy Neue Trial',sans-serif;
+font-family:'Fredoka',sans-serif;
+background:linear-gradient(135deg,#ff6f91,#ffc75f);
 color:white;
 text-align:center;
-background:linear-gradient(135deg,#ff6f91,#ffc75f);
+overflow-x:hidden;
 }
 
 .hero{
@@ -27,7 +28,16 @@ align-items:center;
 }
 
 .title{
-font-size:80px;
+font-size:60px;
+}
+
+.arrow{
+font-size:40px;
+animation:down 1s infinite alternate;
+}
+@keyframes down{
+from{transform:translateY(0)}
+to{transform:translateY(15px)}
 }
 
 .text{
@@ -45,14 +55,13 @@ text-align:left;
 width:300px;
 height:420px;
 margin:40px auto;
-background:linear-gradient(135deg,#5d1632,#d85b8a);
-border-radius:20px;
+background:#d85b8a;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:40px;
+font-size:35px;
+border-radius:20px;
 cursor:pointer;
-box-shadow:0 30px 60px rgba(0,0,0,0.4);
 }
 
 #book{
@@ -60,13 +69,6 @@ display:none;
 margin:auto;
 width:800px;
 height:500px;
-}
-
-.page{
-background:white;
-display:flex;
-justify-content:center;
-align-items:center;
 }
 
 .page img{
@@ -80,31 +82,26 @@ object-fit:cover;
 <body>
 
 <div class="hero">
-<div class="title">С днём рождения, Сашулька 💛</div>
+<div class="title">С днём рождения,<br>Сашулька 💛</div>
+<div class="arrow">↓</div>
 </div>
 
 <div class="text">
 С днём рождения, Саша 💛<br><br>
-Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни, и словами это всё передать очень сложно<br><br>
+Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни, и словами это всё передать очень сложно...<br><br>
 
-Мы с тобой уже 14 лет вместе. Четырнадцать. Это не просто цифра — это целая жизнь, прожитая бок о бок. Мы с тобой прошли всё: детский сад, школу, младшие классы, взросление, первые переживания, радости, слёзы, смех до боли в животе. Мы росли вместе, менялись вместе, и при этом каким-то чудом всегда оставались рядом.<br><br>
+Мы с тобой уже четырнадцать лет вместе. Четырнадцать. Это не просто цифра — это целая жизнь...<br><br>
 
-Ты для меня не просто подруга — ты человек, который знает меня настоящую. С моими странностями, настроениями, моментами, когда я могу быть невыносимой. И всё равно ты остаёшься рядом. И это бесценно.<br><br>
+Ты для меня не просто подруга — ты человек, который знает меня настоящую...<br><br>
 
-Я очень ценю тебя. Правда. Даже если иногда кажется, что я где-то не рядом, что-то не так сделала или не послушала — знай, что ты всегда в моём сердце. И если ты напишешь, особенно если скажешь, что это важно — я всегда отвечу. Потому что ты для меня важна. Очень.<br><br>
+Я очень ценю тебя. Правда...<br><br>
 
-Я хочу, чтобы мы виделись чаще. Хочу больше моментов с тобой, больше смеха, прогулок, разговоров ни о чём и обо всём одновременно. Надеюсь, этим летом мы проведём вместе кучу времени — так, как раньше, или даже лучше.<br><br>
+Я хочу, чтобы мы виделись чаще...<br><br>
 
-Я до сих пор помню столько наших моментов. Как мы слушали мимимамому и могли включать её по сто раз подряд. Как катались на качелях и придумывали какие-то свои миры. Наши ночевки, лагерь, как гуляли допоздна, обсуждали всё подряд, смеялись так, что невозможно было остановиться. Как поддерживали друг друга в сложные моменты.<br><br>
-
-Помню, как мы могли просто сидеть рядом — и этого уже было достаточно. Потому что с тобой всегда спокойно, тепло и по-настоящему.<br><br>
-
-И я уверена, что это только начало. Нам ещё столько всего предстоит.<br><br>
-
-Саша, я тебя очень сильно люблю. 💛
+Я тебя очень сильно люблю 💛
 </div>
 
-<div class="cover" onclick="openBook()">Открыть воспоминания 📖</div>
+<div class="cover" onclick="openBook()">Открыть 📖</div>
 
 <div id="book"></div>
 
@@ -112,58 +109,58 @@ object-fit:cover;
 
 <script>
 
-const photos = [
-"photo_2026-05-04_10-17-11.jpg",
-"photo_2026-05-04_10-17-10.jpg",
-"photo_2026-05-04_10-17-09.jpg",
-"photo_2026-05-04_10-17-08.jpg",
-"photo_2026-05-04_10-17-07.jpg",
-"photo_2026-05-04_10-17-04.jpg",
-"photo_2026-05-04_10-17-02.jpg",
-"photo_2026-05-04_10-17-01.jpg",
-"photo_2026-05-04_10-17-00.jpg",
-"photo_2026-05-04_10-16-59.jpg",
-"photo_2026-05-04_10-16-57.jpg",
-"photo_2026-05-04_10-16-56.jpg",
-"photo_2026-05-04_10-16-55.jpg",
-"photo_2026-05-04_10-16-54.jpg",
-"photo_2026-05-04_10-16-53.jpg",
-"photo_2026-05-04_10-16-49.jpg",
-"photo_2026-05-04_10-16-47.jpg",
-"photo_2026-05-04_10-16-45.jpg",
-"photo_2026-05-04_10-16-44.jpg",
-"photo_2026-05-04_10-16-42.jpg",
-"photo_2026-05-04_10-16-41.jpg",
-"photo_2026-05-04_10-16-40.jpg",
-"photo_2026-05-04_10-16-39.jpg",
-"photo_2026-05-04_10-16-38.jpg",
-"photo_2026-05-04_10-16-37.jpg",
-"photo_2026-05-04_10-16-36.jpg",
-"photo_2026-05-04_10-16-35.jpg",
-"photo_2026-05-04_10-16-34.jpg",
-"photo_2026-05-04_10-16-33.jpg",
-"photo_2026-05-04_10-16-32.jpg"
+/* 🔥 АВТОПОИСК ФОТО */
+async function loadPhotos(){
+let list = [];
+
+for(let i=1;i<200;i++){
+let num = i.toString().padStart(2,'0');
+
+let possible = [
+`photo_2026-05-04_10-15-${num}.jpg`,
+`photo_2026-05-04_10-16-${num}.jpg`,
+`photo_2026-05-04_10-17-${num}.jpg`
 ];
+
+for(let p of possible){
+try{
+let res = await fetch(p);
+if(res.ok){
+list.push(p);
+}
+}catch{}
+}
+}
+
+return list;
+}
 
 let pageFlip;
 
-function openBook(){
+async function openBook(){
+
 document.querySelector(".cover").style.display="none";
 document.getElementById("book").style.display="block";
 
+const photos = await loadPhotos();
+
+if(!photos.length){
+alert("ФОТО НЕ НАЙДЕНЫ 😭");
+return;
+}
+
 pageFlip = new St.PageFlip(document.getElementById("book"), {
-width: 400,
-height: 500,
-showCover: true
+width:400,
+height:500,
+showCover:true
 });
 
 const pages = photos.map(p =>
-`<div class="page"><img src="${p}" onerror="this.src='https://via.placeholder.com/400x500?text=💛'"></div>`
+`<div class="page"><img src="${p}"></div>`
 );
 
 pageFlip.loadFromHTML(pages);
 }
-
 </script>
 
 </body>
