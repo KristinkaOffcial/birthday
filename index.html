@@ -16,18 +16,19 @@ margin:0;
 font-family:'Comfortaa',sans-serif;
 background:linear-gradient(135deg,#d6ecff,#ffd6f5);
 overflow-x:hidden;
+color:#4a3a45;
 }
 
-/* экран */
+/* HERO */
 .hero{
-height:100vh;
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:20px;
 }
-
 .title{
 font-family:'Baloo 2';
 font-size:clamp(42px,8vw,90px);
@@ -38,29 +39,29 @@ color:transparent;
 
 /* кнопка вниз */
 .arrow{
-margin-top:30px;
-font-size:60px;
+margin-top:28px;
+font-size:64px;
 cursor:pointer;
 animation:down 1.5s infinite;
 }
 @keyframes down{50%{transform:translateY(14px);}}
 
-/* текст */
+/* СЕКЦИИ */
 .section{
 padding:70px 20px;
 max-width:900px;
 margin:auto;
 }
-
 h2{
 text-align:center;
 font-family:'Baloo 2';
 color:#ff8ad6;
+margin-bottom:18px;
 }
-
 .text{
 white-space:pre-line;
 line-height:1.9;
+font-size:16px;
 }
 
 /* КНИГА */
@@ -72,7 +73,7 @@ text-align:center;
 .book-cover{
 width:340px;
 height:460px;
-margin:auto;
+margin:20px auto 30px;
 border-radius:16px;
 background:linear-gradient(145deg,#5bbcff,#ff7ed1);
 display:flex;
@@ -84,25 +85,37 @@ cursor:pointer;
 position:relative;
 box-shadow:0 30px 80px rgba(0,0,0,.25);
 transition:1s;
+transform-style:preserve-3d;
+overflow:hidden;
 }
 
+/* корешок */
 .book-cover::before{
 content:"";
 position:absolute;
-left:0;
-top:0;
-width:18px;
-height:100%;
-background:rgba(0,0,0,.2);
+left:0; top:0;
+width:18px; height:100%;
+background:rgba(0,0,0,.18);
 border-radius:16px 0 0 16px;
 }
 
-/* замок */
+/* отблеск */
+.book-cover::after{
+content:"";
+position:absolute;
+top:0; left:-100%;
+width:100%; height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+animation:shine 3.2s infinite;
+}
+@keyframes shine{100%{left:100%;}}
+
+/* замочек */
 .lock{
 position:absolute;
 bottom:20px;
 font-size:38px;
-transition:.5s;
+transition:.4s;
 }
 
 /* открытие */
@@ -113,49 +126,64 @@ opacity:0;
 
 #book{
 display:none;
-margin:auto;
+margin:0 auto;
+filter:drop-shadow(0 20px 40px rgba(0,0,0,.25));
 }
 
-/* страницы */
+/* СТРАНИЦЫ */
 .page{
 background:#fffdf6;
 }
-.frame{
+.spread{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 padding:12px;
 height:100%;
-background:white;
+}
+.frame{
+background:#fff;
+border-radius:8px;
+padding:10px;
 display:flex;
 align-items:center;
 justify-content:center;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 .frame img{
 width:100%;
 height:100%;
 object-fit:cover;
 border-radius:6px;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
-/* кнопки */
+/* управление */
 .controls{
 text-align:center;
-margin-top:10px;
+margin-top:12px;
 }
 button{
-padding:10px 20px;
+padding:10px 18px;
 border:none;
 border-radius:20px;
 margin:5px;
 cursor:pointer;
 background:#ff8ad6;
 color:white;
+font-weight:600;
+}
+.counter{
+display:inline-block;
+margin:0 10px;
+font-weight:600;
 }
 
-/* сердечки и звёзды */
+/* СЕРДЕЧКИ + ЗВЁЗДЫ */
 .fall{
 position:fixed;
 top:-30px;
 pointer-events:none;
+opacity:.9;
 animation:fall linear infinite;
 }
 @keyframes fall{
@@ -168,8 +196,8 @@ to{transform:translateY(110vh) rotate(360deg);}
 <body>
 
 <div class="hero">
-<div class="title">С днём рождения, Сашулька 💗</div>
-<div class="arrow" onclick="scrollDown()">💗</div>
+  <div class="title">С днём рождения, Сашулька 💗</div>
+  <div class="arrow" onclick="scrollDown()">💗</div>
 </div>
 
 <div id="text" class="section">
@@ -204,26 +232,27 @@ to{transform:translateY(110vh) rotate(360deg);}
 <h2>💗 Наша история 📖</h2>
 
 <div class="book-container">
-<div class="book-cover" onclick="openBook(this)">
-<h3>Наша история</h3>
-<div class="lock">🔒</div>
-</div>
+  <div class="book-cover" onclick="openBook(this)">
+    <h3>Наша история</h3>
+    <div class="lock">🔒</div>
+  </div>
 
-<div id="book"></div>
+  <div id="book"></div>
 
-<div class="controls">
-<button onclick="prev()">←</button>
-<button onclick="next()">→</button>
-</div>
+  <div class="controls">
+    <button onclick="prev()">← Назад</button>
+    <span class="counter" id="counter">1</span>
+    <button onclick="next()">Вперёд →</button>
+  </div>
 </div>
 </div>
 
 <script>
-
 function scrollDown(){
-document.getElementById("text").scrollIntoView({behavior:"smooth"});
+  document.getElementById("text").scrollIntoView({behavior:"smooth"});
 }
 
+/* ВСЕ ФОТО БЕЗ (2) */
 const photos = [
 "photo_2026-05-04_10-15-21.jpg",
 "photo_2026-05-04_10-15-22.jpg",
@@ -234,7 +263,6 @@ const photos = [
 "photo_2026-05-04_10-15-27.jpg",
 "photo_2026-05-04_10-15-28.jpg",
 "photo_2026-05-04_10-15-29.jpg",
-"photo_2026-05-04_10-15-30 (2).jpg",
 "photo_2026-05-04_10-15-30.jpg",
 "photo_2026-05-04_10-15-31.jpg",
 "photo_2026-05-04_10-15-32.jpg",
@@ -244,65 +272,138 @@ const photos = [
 "photo_2026-05-04_10-15-37.jpg",
 "photo_2026-05-04_10-15-38.jpg",
 "photo_2026-05-04_10-15-39.jpg",
-"photo_2026-05-04_10-15-40.jpg"
+"photo_2026-05-04_10-15-40.jpg",
+"photo_2026-05-04_10-15-42.jpg",
+"photo_2026-05-04_10-15-43.jpg",
+"photo_2026-05-04_10-15-44.jpg",
+"photo_2026-05-04_10-15-45.jpg",
+"photo_2026-05-04_10-15-46.jpg",
+"photo_2026-05-04_10-16-02.jpg",
+"photo_2026-05-04_10-16-04.jpg",
+"photo_2026-05-04_10-16-05.jpg",
+"photo_2026-05-04_10-16-06.jpg",
+"photo_2026-05-04_10-16-08.jpg",
+"photo_2026-05-04_10-16-09.jpg",
+"photo_2026-05-04_10-16-10.jpg",
+"photo_2026-05-04_10-16-11.jpg",
+"photo_2026-05-04_10-16-12.jpg",
+"photo_2026-05-04_10-16-13.jpg",
+"photo_2026-05-04_10-16-14.jpg",
+"photo_2026-05-04_10-16-15.jpg",
+"photo_2026-05-04_10-16-17.jpg",
+"photo_2026-05-04_10-16-18.jpg",
+"photo_2026-05-04_10-16-19.jpg",
+"photo_2026-05-04_10-16-20.jpg",
+"photo_2026-05-04_10-16-21.jpg",
+"photo_2026-05-04_10-16-22.jpg",
+"photo_2026-05-04_10-16-23.jpg",
+"photo_2026-05-04_10-16-24.jpg",
+"photo_2026-05-04_10-16-25.jpg",
+"photo_2026-05-04_10-16-26.jpg",
+"photo_2026-05-04_10-16-27.jpg",
+"photo_2026-05-04_10-16-28.jpg",
+"photo_2026-05-04_10-16-29.jpg",
+"photo_2026-05-04_10-16-30.jpg",
+"photo_2026-05-04_10-16-32.jpg",
+"photo_2026-05-04_10-16-33.jpg",
+"photo_2026-05-04_10-16-34.jpg",
+"photo_2026-05-04_10-16-35.jpg",
+"photo_2026-05-04_10-16-36.jpg",
+"photo_2026-05-04_10-16-37.jpg",
+"photo_2026-05-04_10-16-38.jpg",
+"photo_2026-05-04_10-16-39.jpg",
+"photo_2026-05-04_10-16-40.jpg",
+"photo_2026-05-04_10-16-41.jpg",
+"photo_2026-05-04_10-16-42.jpg",
+"photo_2026-05-04_10-16-44.jpg",
+"photo_2026-05-04_10-16-45.jpg",
+"photo_2026-05-04_10-16-47.jpg",
+"photo_2026-05-04_10-16-49.jpg",
+"photo_2026-05-04_10-16-53.jpg",
+"photo_2026-05-04_10-16-54.jpg",
+"photo_2026-05-04_10-16-55.jpg",
+"photo_2026-05-04_10-16-56.jpg",
+"photo_2026-05-04_10-16-57.jpg",
+"photo_2026-05-04_10-16-59.jpg",
+"photo_2026-05-04_10-17-00.jpg",
+"photo_2026-05-04_10-17-01.jpg",
+"photo_2026-05-04_10-17-02.jpg",
+"photo_2026-05-04_10-17-04.jpg",
+"photo_2026-05-04_10-17-07.jpg",
+"photo_2026-05-04_10-17-08.jpg",
+"photo_2026-05-04_10-17-09.jpg",
+"photo_2026-05-04_10-17-10.jpg",
+"photo_2026-05-04_10-17-11.jpg"
 ];
 
 let pageFlip;
 
 function openBook(el){
-el.classList.add("open");
+  el.classList.add("open");
 
-setTimeout(()=>{
-el.style.display="none";
+  setTimeout(()=>{
+    el.style.display="none";
+    const book=document.getElementById("book");
+    book.style.display="block";
 
-const book=document.getElementById("book");
-book.style.display="block";
+    /* по 2 фото на разворот */
+    for(let i=0;i<photos.length;i+=2){
+      const page=document.createElement("div");
+      page.className="page";
 
-/* создаём по 2 фото на разворот */
-for(let i=0;i<photos.length;i+=2){
+      const spread=document.createElement("div");
+      spread.className="spread";
 
-const page=document.createElement("div");
-page.className="page";
+      for(let j=0;j<2;j++){
+        if(photos[i+j]){
+          const frame=document.createElement("div");
+          frame.className="frame";
+          const img=document.createElement("img");
+          img.src=photos[i+j];
+          img.loading="lazy";
+          img.decoding="async";
+          frame.appendChild(img);
+          spread.appendChild(frame);
+        }
+      }
 
-const frame=document.createElement("div");
-frame.className="frame";
+      page.appendChild(spread);
+      book.appendChild(page);
+    }
 
-const img=document.createElement("img");
-img.src=photos[i];
-img.loading="lazy";
+    pageFlip=new St.PageFlip(book,{
+      width:420,
+      height:560,
+      showCover:true,
+      maxShadowOpacity:0.4,
+      flippingTime:800,
+      useMouseEvents:true
+    });
 
-frame.appendChild(img);
-page.appendChild(frame);
+    pageFlip.loadFromHTML(document.querySelectorAll(".page"));
 
-book.appendChild(page);
-}
+    pageFlip.on("flip",()=>{
+      document.getElementById("counter").innerText =
+        (pageFlip.getCurrentPageIndex()+1)+" / "+Math.ceil(photos.length/2);
+    });
 
-pageFlip=new St.PageFlip(book,{
-width:400,
-height:550,
-showCover:true
-});
-
-pageFlip.loadFromHTML(document.querySelectorAll(".page"));
-
-},700);
+  },700);
 }
 
 function next(){ if(pageFlip) pageFlip.flipNext(); }
 function prev(){ if(pageFlip) pageFlip.flipPrev(); }
 
-/* 💗 сердечки + ✨ звёзды */
+/* немного сердечек + звёзд */
 const symbols=["💗","💙","✨"];
-for(let i=0;i<25;i++){
-let el=document.createElement("div");
-el.className="fall";
-el.innerText=symbols[Math.floor(Math.random()*symbols.length)];
-el.style.left=Math.random()*100+"vw";
-el.style.fontSize=(16+Math.random()*20)+"px";
-el.style.animationDuration=(6+Math.random()*6)+"s";
-document.body.appendChild(el);
+for(let i=0;i<24;i++){
+  let el=document.createElement("div");
+  el.className="fall";
+  el.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(16+Math.random()*18)+"px";
+  el.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(el);
 }
-
 </script>
 
 </body>
