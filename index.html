@@ -4,18 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>С днём рождения 💛</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 
 <style>
 body{
 margin:0;
 font-family:'Comfortaa',sans-serif;
 background:linear-gradient(135deg,#fff3b8,#ffd1e8);
-overflow-x:hidden;
 }
 
 /* экран */
@@ -44,7 +41,7 @@ text-decoration:none;
 
 /* текст */
 .section{
-padding:70px 20px;
+padding:60px 20px;
 max-width:900px;
 margin:auto;
 }
@@ -60,43 +57,49 @@ white-space:pre-line;
 line-height:1.9;
 }
 
-/* книга */
-.book-cover{
-width:340px;
-height:460px;
-margin:auto;
-background:linear-gradient(135deg,#8b3e1f,#4a1f14);
-border-radius:18px;
-color:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-box-shadow:0 25px 60px rgba(0,0,0,.35);
-cursor:pointer;
-transition:.5s;
+/* ГАЛЕРЕЯ */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+gap:10px;
+margin-top:30px;
 }
 
-.book-cover:hover{transform:scale(1.05);}
+.gallery img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
 
-#book{display:none;margin:auto;}
+.gallery img:hover{
+transform:scale(1.05);
+}
 
-.page{background:#fff8e7;}
-.page img{
+/* МОДАЛКА */
+.modal{
+position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
-object-fit:cover;
+background:rgba(0,0,0,.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
 }
 
-/* сердца */
-.heart{
-position:fixed;
-top:-20px;
-animation:fall linear infinite;
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
 }
 
-@keyframes fall{
-to{transform:translateY(110vh);}
+.modal.show{
+display:flex;
 }
 </style>
 
@@ -113,87 +116,45 @@ to{transform:translateY(110vh);}
 <h2>Поздравление 💛</h2>
 <div class="text">
 С днём рождения, Саша 💛
-Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни, и словами это всё передать очень сложно
-
-Мы с тобой уже 14 лет вместе. Четырнадцать. Это не просто цифра — это целая жизнь...
-
-С днём рождения тебя, моя родная 💛
-
+Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни...
+(вставь весь текст как у тебя)
 </div>
 </div>
 
 <div class="section">
 <h2>Наша история 📖</h2>
 
-<div class="book-cover" onclick="openBook()">
-<h3>Наша история</h3>
-<p>нажми чтобы открыть</p>
+<div class="gallery" id="gallery"></div>
+
 </div>
 
-<div id="book"></div>
-
+<div class="modal" id="modal" onclick="this.classList.remove('show')">
+<img id="modalImg">
 </div>
 
 <script>
 
-/* 🔥 АВТОЗАГРУЗКА ВСЕХ ФОТО */
-async function loadPhotos(){
-try{
-const res = await fetch('./');
-const text = await res.text();
+/* ВСТАВЬ ВСЕ ФОТО СЮДА */
+const photos = [
+/* твой список */
+];
 
-const files = [...text.matchAll(/photo_\\d{{4}}-[^"]+\\.jpg/g)]
-.map(x=>x[0]);
+const gallery=document.getElementById("gallery");
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modalImg");
 
-return [...new Set(files)].sort();
-}catch(e){
-return [];
-}
-}
-
-async function openBook(){
-
-document.querySelector(".book-cover").style.display="none";
-
-const book=document.getElementById("book");
-book.style.display="block";
-
-const photos = await loadPhotos();
-
-/* создаём страницы */
 photos.forEach(p=>{
-const page=document.createElement("div");
-page.className="page";
-
 const img=document.createElement("img");
 img.src=p;
 img.loading="lazy";
-img.decoding="async";
 
-page.appendChild(img);
-book.appendChild(page);
+img.onclick=()=>{
+modal.classList.add("show");
+modalImg.src=p;
+};
+
+gallery.appendChild(img);
 });
-
-/* книга */
-const pageFlip=new St.PageFlip(book,{
-width:350,
-height:500,
-showCover:true,
-maxShadowOpacity:0.3
-});
-
-pageFlip.loadFromHTML(document.querySelectorAll(".page"));
-}
-
-/* сердечки */
-for(let i=0;i<35;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerText="💛";
-h.style.left=Math.random()*100+"vw";
-h.style.animationDuration=(5+Math.random()*5)+"s";
-document.body.appendChild(h);
-}
 
 </script>
 
