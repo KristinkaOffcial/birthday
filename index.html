@@ -16,20 +16,17 @@ margin:0;
 font-family:'Comfortaa',sans-serif;
 background:linear-gradient(135deg,#d6ecff,#ffd6f5);
 overflow-x:hidden;
-color:#4a3a45;
 }
 
 /* HERO */
 .hero{
-min-height:100vh;
+height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
 }
-
 .title{
 font-family:'Baloo 2';
 font-size:clamp(42px,8vw,90px);
@@ -38,135 +35,124 @@ background:linear-gradient(90deg,#6ec1ff,#ff8ad6);
 color:transparent;
 }
 
-/* кнопка вниз */
-.arrow{
-margin-top:30px;
-font-size:64px;
-cursor:pointer;
-animation:down 1.5s infinite;
-}
-@keyframes down{
-50%{transform:translateY(14px);}
-}
-
-/* СЕКЦИИ */
-.section{
-padding:70px 20px;
-max-width:900px;
-margin:auto;
-}
-
-h2{
-text-align:center;
-font-family:'Baloo 2';
-color:#ff8ad6;
-margin-bottom:20px;
-}
-
-.text{
-white-space:pre-line;
-line-height:1.9;
-font-size:16px;
-}
-
 /* КНИГА */
+.book-wrapper{
+perspective:1500px;
+text-align:center;
+}
+
 .book-cover{
-width:320px;
-height:420px;
-margin:30px auto;
-background:linear-gradient(135deg,#6ec1ff,#ff8ad6);
-border-radius:18px;
+width:340px;
+height:460px;
+margin:auto;
+border-radius:16px;
+background:linear-gradient(145deg,#5bbcff,#ff7ed1);
 color:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 cursor:pointer;
-box-shadow:0 25px 60px rgba(0,0,0,.2);
 position:relative;
+box-shadow:0 30px 80px rgba(0,0,0,.25);
+transform-style:preserve-3d;
 transition:1s;
-overflow:hidden;
 }
 
-/* декоративный отблеск */
+/* корешок */
+.book-cover::before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+width:20px;
+height:100%;
+background:rgba(0,0,0,.2);
+border-radius:16px 0 0 16px;
+}
+
+/* отблеск */
 .book-cover::after{
-content:'';
+content:"";
 position:absolute;
 top:0;
 left:-100%;
 width:100%;
 height:100%;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,.5),transparent);
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
 animation:shine 3s infinite;
 }
 @keyframes shine{
 100%{left:100%;}
 }
 
-/* замочек */
-.lock{
-position:absolute;
-bottom:20px;
-font-size:40px;
-transition:.4s;
-}
-
-/* открытие */
 .book-cover.open{
-transform:rotateY(90deg);
+transform:rotateY(-100deg);
 opacity:0;
 }
 
+.lock{
+position:absolute;
+bottom:20px;
+font-size:36px;
+}
+
+/* СТРАНИЦЫ */
 #book{
 display:none;
 margin:auto;
+filter:drop-shadow(0 20px 40px rgba(0,0,0,.25));
 }
 
-/* страницы */
 .page{
-background:#fff;
-border-radius:4px;
+background:#fffdf6;
+border-radius:6px;
 overflow:hidden;
 }
-.page img{
-width:100%;
+
+/* рамка фото как полароид */
+.frame{
+padding:12px;
+background:#fff;
 height:100%;
-object-fit:cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
-/* управление */
+.frame img{
+width:100%;
+height:90%;
+object-fit:cover;
+border-radius:6px;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+/* кнопки */
 .controls{
 text-align:center;
 margin-top:12px;
 }
 button{
-padding:10px 20px;
+padding:10px 18px;
 border:none;
 border-radius:20px;
 margin:5px;
 cursor:pointer;
 background:#ff8ad6;
 color:white;
-font-weight:600;
-}
-.counter{
-display:inline-block;
-margin:0 10px;
-font-weight:600;
 }
 
-/* СЕРДЕЧКИ + КОНФЕТТИ */
+/* СЕРДЕЧКИ */
 .fall{
 position:fixed;
-top:-30px;
+top:-20px;
 pointer-events:none;
-opacity:.8;
 animation:fall linear infinite;
 }
 @keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
+to{transform:translateY(110vh);}
 }
 </style>
 
@@ -176,63 +162,52 @@ transform:translateY(110vh) rotate(360deg);
 
 <div class="hero">
 <div class="title">С днём рождения, Сашулька 💗</div>
-<div class="arrow" onclick="scrollDown()">💗</div>
 </div>
 
-<div id="text" class="section">
-<h2>💗 Поздравление 💙</h2>
-<div class="text">
-С днём рождения, Саша 💛
-Я даже не знаю, с чего начать, потому что ты — это огромная часть моей жизни, и словами это всё передать очень сложно
-
-Мы с тобой уже 14 лет вместе. Четырнадцать. Это не просто цифра — это целая жизнь, прожитая бок о бок. Мы с тобой прошли всё: детский сад, школу, младшие классы, взросление, первые переживания, радости, слёзы, смех до боли в животе. Мы росли вместе, менялись вместе, и при этом каким-то чудом всегда оставались рядом.
-
-Ты для меня не просто подруга — ты человек, который знает меня настоящую. С моими странностями, настроениями, моментами, когда я могу быть невыносимой. И всё равно ты остаёшься рядом. И это бесценно.
-
-Я очень ценю тебя. Правда. Даже если иногда кажется, что я где-то не рядом, что-то не так сделала или не послушала — знай, что ты всегда в моём сердце. И если ты напишешь, особенно если скажешь, что это важно — я всегда отвечу. Потому что ты для меня важна. Очень.
-
-Я хочу, чтобы мы виделись чаще. Хочу больше моментов с тобой, больше смеха, прогулок, разговоров ни о чём и обо всём одновременно. Надеюсь, этим летом мы проведём вместе кучу времени — так, как раньше, или даже лучше.
-
-Я до сих пор помню столько наших моментов. Как мы слушали мимимамому и могли включать её по сто раз подряд. Как катались на качелях и придумывали какие-то свои миры. Наши ночевки, лагерь, как гуляли допоздна, обсуждали всё подряд, смеялись так, что невозможно было остановиться. Как поддерживали друг друга в сложные моменты, даже когда сами не до конца понимали, что происходит.
-
-Помню, как мы могли просто сидеть рядом — и этого уже было достаточно. Потому что с тобой всегда спокойно, тепло и по-настоящему.
-
-И я уверена, что это только начало. Нам ещё столько всего предстоит: новые воспоминания, поездки, разговоры, глупости, мечты… Я хочу пройти всё это с тобой так же, как мы прошли эти 14 лет — рука об руку.
-
-Саша, я тебя очень сильно люблю. Ценю. Горжусь тем, что ты есть в моей жизни.
-Пусть у тебя всё получается. Пусть ты будешь счастлива. Пусть рядом будут люди, которые тебя ценят так же, как ты того заслуживаешь. И пусть я всегда остаюсь среди этих людей.
-
-С днём рождения тебя, моя родная 💛
-
-</div>
-</div>
-
-<div class="section">
-<h2>💗 Наша история 📖</h2>
+<div class="book-wrapper">
 
 <div class="book-cover" onclick="openBook(this)">
-<h3>Наша история</h3>
+<h2>Наша история 💗</h2>
 <div class="lock">🔒</div>
 </div>
 
 <div id="book"></div>
 
 <div class="controls">
-<button onclick="prev()">← Назад</button>
-<span class="counter" id="counter">1</span>
-<button onclick="next()">Вперёд →</button>
+<button onclick="prev()">←</button>
+<button onclick="next()">→</button>
 </div>
 
 </div>
 
 <script>
-function scrollDown(){
-document.getElementById("text").scrollIntoView({behavior:"smooth"});
-}
 
-/* ВСЕ ФОТО */
 const photos = [
-"photo_2026-05-04_10-15-21.jpg","photo_2026-05-04_10-15-22.jpg","photo_2026-05-04_10-15-23.jpg","photo_2026-05-04_10-15-24.jpg","photo_2026-05-04_10-15-25.jpg","photo_2026-05-04_10-15-26.jpg","photo_2026-05-04_10-15-27.jpg","photo_2026-05-04_10-15-28.jpg","photo_2026-05-04_10-15-29.jpg","photo_2026-05-04_10-15-30 (2).jpg","photo_2026-05-04_10-15-30.jpg","photo_2026-05-04_10-15-31.jpg","photo_2026-05-04_10-15-32.jpg","photo_2026-05-04_10-15-33.jpg","photo_2026-05-04_10-15-35.jpg","photo_2026-05-04_10-15-36.jpg","photo_2026-05-04_10-15-37.jpg","photo_2026-05-04_10-15-38.jpg","photo_2026-05-04_10-15-39.jpg","photo_2026-05-04_10-15-40.jpg","photo_2026-05-04_10-15-42.jpg","photo_2026-05-04_10-15-43 (2).jpg","photo_2026-05-04_10-15-43.jpg","photo_2026-05-04_10-15-44.jpg","photo_2026-05-04_10-15-45.jpg","photo_2026-05-04_10-15-46.jpg","photo_2026-05-04_10-16-02.jpg","photo_2026-05-04_10-16-04.jpg","photo_2026-05-04_10-16-05.jpg","photo_2026-05-04_10-16-06.jpg","photo_2026-05-04_10-16-08.jpg","photo_2026-05-04_10-16-09.jpg","photo_2026-05-04_10-16-10.jpg","photo_2026-05-04_10-16-11.jpg","photo_2026-05-04_10-16-12.jpg","photo_2026-05-04_10-16-13.jpg","photo_2026-05-04_10-16-14.jpg","photo_2026-05-04_10-16-15.jpg","photo_2026-05-04_10-16-17.jpg","photo_2026-05-04_10-16-18.jpg","photo_2026-05-04_10-16-19.jpg","photo_2026-05-04_10-16-20.jpg","photo_2026-05-04_10-16-21.jpg","photo_2026-05-04_10-16-22.jpg","photo_2026-05-04_10-16-23.jpg","photo_2026-05-04_10-16-24.jpg","photo_2026-05-04_10-16-25.jpg","photo_2026-05-04_10-16-26.jpg","photo_2026-05-04_10-16-27.jpg","photo_2026-05-04_10-16-28.jpg","photo_2026-05-04_10-16-29.jpg","photo_2026-05-04_10-16-30.jpg","photo_2026-05-04_10-16-32.jpg","photo_2026-05-04_10-16-33.jpg","photo_2026-05-04_10-16-34.jpg","photo_2026-05-04_10-16-35.jpg","photo_2026-05-04_10-16-36.jpg","photo_2026-05-04_10-16-37.jpg","photo_2026-05-04_10-16-38.jpg","photo_2026-05-04_10-16-39.jpg","photo_2026-05-04_10-16-40.jpg","photo_2026-05-04_10-16-41.jpg","photo_2026-05-04_10-16-42.jpg","photo_2026-05-04_10-16-44.jpg","photo_2026-05-04_10-16-45 (2).jpg","photo_2026-05-04_10-16-45.jpg","photo_2026-05-04_10-16-47 (2).jpg","photo_2026-05-04_10-16-47.jpg","photo_2026-05-04_10-16-49.jpg","photo_2026-05-04_10-16-53.jpg","photo_2026-05-04_10-16-54.jpg","photo_2026-05-04_10-16-55.jpg","photo_2026-05-04_10-16-56.jpg","photo_2026-05-04_10-16-57.jpg","photo_2026-05-04_10-16-59.jpg","photo_2026-05-04_10-17-00.jpg","photo_2026-05-04_10-17-01.jpg","photo_2026-05-04_10-17-02.jpg","photo_2026-05-04_10-17-04.jpg","photo_2026-05-04_10-17-07.jpg","photo_2026-05-04_10-17-08.jpg","photo_2026-05-04_10-17-09.jpg","photo_2026-05-04_10-17-10.jpg","photo_2026-05-04_10-17-11.jpg"
+"photo_2026-05-04_10-15-21.jpg",
+"photo_2026-05-04_10-15-22.jpg",
+"photo_2026-05-04_10-15-23.jpg",
+"photo_2026-05-04_10-15-24.jpg",
+"photo_2026-05-04_10-15-25.jpg",
+"photo_2026-05-04_10-15-26.jpg",
+"photo_2026-05-04_10-15-27.jpg",
+"photo_2026-05-04_10-15-28.jpg",
+"photo_2026-05-04_10-15-29.jpg",
+"photo_2026-05-04_10-15-30 (2).jpg",
+"photo_2026-05-04_10-15-30.jpg",
+"photo_2026-05-04_10-15-31.jpg",
+"photo_2026-05-04_10-15-32.jpg",
+"photo_2026-05-04_10-15-33.jpg",
+"photo_2026-05-04_10-15-35.jpg",
+"photo_2026-05-04_10-15-36.jpg",
+"photo_2026-05-04_10-15-37.jpg",
+"photo_2026-05-04_10-15-38.jpg",
+"photo_2026-05-04_10-15-39.jpg",
+"photo_2026-05-04_10-15-40.jpg",
+"photo_2026-05-04_10-15-42.jpg",
+"photo_2026-05-04_10-15-43 (2).jpg",
+"photo_2026-05-04_10-15-43.jpg",
+"photo_2026-05-04_10-15-44.jpg",
+"photo_2026-05-04_10-15-45.jpg"
 ];
 
 let pageFlip;
@@ -246,34 +221,31 @@ el.style.display="none";
 const book=document.getElementById("book");
 book.style.display="block";
 
-/* создаём страницы */
 photos.forEach(p=>{
 const page=document.createElement("div");
 page.className="page";
 
+const frame=document.createElement("div");
+frame.className="frame";
+
 const img=document.createElement("img");
 img.src=p;
 img.loading="lazy";
-img.decoding="async";
 
-page.appendChild(img);
+frame.appendChild(img);
+page.appendChild(frame);
 book.appendChild(page);
 });
 
 pageFlip=new St.PageFlip(book,{
-width:360,
-height:520,
+width:380,
+height:540,
 showCover:true,
-maxShadowOpacity:0.35,
-flippingTime:800,
-useMouseEvents:true
+maxShadowOpacity:0.4,
+flippingTime:900
 });
 
 pageFlip.loadFromHTML(document.querySelectorAll(".page"));
-
-pageFlip.on("flip",()=>{
-document.getElementById("counter").innerText = (pageFlip.getCurrentPageIndex()+1)+" / "+photos.length;
-});
 
 },700);
 }
@@ -281,17 +253,16 @@ document.getElementById("counter").innerText = (pageFlip.getCurrentPageIndex()+1
 function next(){ if(pageFlip) pageFlip.flipNext(); }
 function prev(){ if(pageFlip) pageFlip.flipPrev(); }
 
-/* немного сердечек + конфетти */
-const symbols=["💗","💙","✨"];
-for(let i=0;i<20;i++){
+/* лёгкие сердечки */
+for(let i=0;i<12;i++){
 let el=document.createElement("div");
 el.className="fall";
-el.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+el.innerText="💗";
 el.style.left=Math.random()*100+"vw";
-el.style.fontSize=(14+Math.random()*18)+"px";
 el.style.animationDuration=(6+Math.random()*6)+"s";
 document.body.appendChild(el);
 }
+
 </script>
 
 </body>
