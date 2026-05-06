@@ -94,6 +94,20 @@ height:100%;
 object-fit:cover;
 }
 
+/* управление */
+.controls{
+text-align:center;
+margin-top:10px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+margin:5px;
+cursor:pointer;
+}
+
 /* сердечки */
 .heart{
 position:fixed;
@@ -153,11 +167,15 @@ to{transform:translateY(110vh);}
 
 <div id="book"></div>
 
+<div class="controls">
+<button onclick="prev()">←</button>
+<button onclick="next()">→</button>
+</div>
+
 </div>
 
 <script>
 
-/* ВСЕ ФОТО */
 const photos = [
 "photo_2026-05-04_10-15-21.jpg",
 "photo_2026-05-04_10-15-22.jpg",
@@ -168,6 +186,7 @@ const photos = [
 "photo_2026-05-04_10-15-27.jpg",
 "photo_2026-05-04_10-15-28.jpg",
 "photo_2026-05-04_10-15-29.jpg",
+"photo_2026-05-04_10-15-30 (2).jpg",
 "photo_2026-05-04_10-15-30.jpg",
 "photo_2026-05-04_10-15-31.jpg",
 "photo_2026-05-04_10-15-32.jpg",
@@ -179,9 +198,11 @@ const photos = [
 "photo_2026-05-04_10-15-39.jpg",
 "photo_2026-05-04_10-15-40.jpg",
 "photo_2026-05-04_10-15-42.jpg",
+"photo_2026-05-04_10-15-43 (2).jpg",
 "photo_2026-05-04_10-15-43.jpg",
 "photo_2026-05-04_10-15-44.jpg",
 "photo_2026-05-04_10-15-45.jpg",
+"photo_2026-05-04_10-15-46.jpg",
 "photo_2026-05-04_10-16-02.jpg",
 "photo_2026-05-04_10-16-04.jpg",
 "photo_2026-05-04_10-16-05.jpg",
@@ -204,17 +225,51 @@ const photos = [
 "photo_2026-05-04_10-16-24.jpg",
 "photo_2026-05-04_10-16-25.jpg",
 "photo_2026-05-04_10-16-26.jpg",
-"photo_2026-05-04_10-16-27.jpg"
+"photo_2026-05-04_10-16-27.jpg",
+"photo_2026-05-04_10-16-28.jpg",
+"photo_2026-05-04_10-16-29.jpg",
+"photo_2026-05-04_10-16-30.jpg",
+"photo_2026-05-04_10-16-32.jpg",
+"photo_2026-05-04_10-16-33.jpg",
+"photo_2026-05-04_10-16-34.jpg",
+"photo_2026-05-04_10-16-35.jpg",
+"photo_2026-05-04_10-16-36.jpg",
+"photo_2026-05-04_10-16-37.jpg",
+"photo_2026-05-04_10-16-38.jpg",
+"photo_2026-05-04_10-16-39.jpg",
+"photo_2026-05-04_10-16-40.jpg",
+"photo_2026-05-04_10-16-41.jpg",
+"photo_2026-05-04_10-16-42.jpg",
+"photo_2026-05-04_10-16-44.jpg",
+"photo_2026-05-04_10-16-45 (2).jpg",
+"photo_2026-05-04_10-16-45.jpg",
+"photo_2026-05-04_10-16-47 (2).jpg",
+"photo_2026-05-04_10-16-47.jpg",
+"photo_2026-05-04_10-16-49.jpg",
+"photo_2026-05-04_10-16-53.jpg",
+"photo_2026-05-04_10-16-54.jpg",
+"photo_2026-05-04_10-16-55.jpg",
+"photo_2026-05-04_10-16-56.jpg",
+"photo_2026-05-04_10-16-57.jpg",
+"photo_2026-05-04_10-16-59.jpg",
+"photo_2026-05-04_10-17-00.jpg",
+"photo_2026-05-04_10-17-01.jpg",
+"photo_2026-05-04_10-17-02.jpg",
+"photo_2026-05-04_10-17-04.jpg",
+"photo_2026-05-04_10-17-07.jpg",
+"photo_2026-05-04_10-17-08.jpg",
+"photo_2026-05-04_10-17-09.jpg",
+"photo_2026-05-04_10-17-10.jpg",
+"photo_2026-05-04_10-17-11.jpg"
 ];
 
+let pageFlip;
+
 function openBook(){
-
 document.querySelector(".book-cover").style.display="none";
-
 const book=document.getElementById("book");
 book.style.display="block";
 
-/* страницы */
 photos.forEach(p=>{
 const page=document.createElement("div");
 page.className="page";
@@ -222,23 +277,19 @@ page.className="page";
 const img=document.createElement("img");
 img.src=p;
 img.loading="lazy";
-img.decoding="async";
 
 page.appendChild(img);
 book.appendChild(page);
 });
 
-/* запуск книги */
-const pageFlip=new St.PageFlip(book,{
-width:350,
-height:500,
-showCover:true
-});
-
+pageFlip=new St.PageFlip(book,{width:350,height:500});
 pageFlip.loadFromHTML(document.querySelectorAll(".page"));
 }
 
-/* сердечки */
+function next(){if(pageFlip)pageFlip.flipNext();}
+function prev(){if(pageFlip)pageFlip.flipPrev();}
+
+/* сердца */
 for(let i=0;i<30;i++){
 let h=document.createElement("div");
 h.className="heart";
